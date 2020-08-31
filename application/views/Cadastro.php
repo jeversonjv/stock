@@ -17,6 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="/assets/template/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
 </head>
 
@@ -41,17 +42,20 @@
                   </div>
                   <form class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nome">
+                      <input type="text" class="form-control form-control-user" id="nome" aria-describedby="emailHelp" placeholder="Nome">
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="E-mail">
+                      <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="E-mail">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Senha">
+                      <input type="password" class="form-control form-control-user" id="senha" placeholder="Senha">
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="confirmar_senha" placeholder="Confirmar Senha">
+                    </div>
+                    <button id="cadastrar" type="button" class="btn btn-primary btn-user btn-block">
                         Criar conta
-                    </a>
+                    </button>
                   </form>
                   <hr>
                   <div class="text-center">
@@ -72,12 +76,14 @@
   <!-- Bootstrap core JavaScript-->
   <script src="/assets/template/vendor/jquery/jquery.min.js"></script>
   <script src="/assets/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="/assets/template/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="/assets/template/js/sb-admin-2.min.js"></script>
+  <script src="/assets/scripts/auth.js"></script>
 
 </body>
 

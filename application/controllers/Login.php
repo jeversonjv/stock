@@ -12,7 +12,7 @@ class Login extends CI_Controller {
         $this->load->view("cadastro");
     }
 
-    public function realizar_login() {
+    public function executar_login() {
 
     }
 
