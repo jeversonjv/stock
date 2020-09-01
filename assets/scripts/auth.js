@@ -16,11 +16,33 @@ $(document).ready(() => {
             return;
         }
 
+        $("#logar").prop("disabled", 1);
+        $("#logar").text("Entrando..."); 
+
         $.post("/login/executar_login", {
-            nome,  
+            email,  
             senha
         }, (retorno) => {
-            console.log(retorno);
+            if(!retorno.erro) {
+                toastr.success(retorno.mensagem);
+                setTimeout(() => {
+                    location.href = "/dashboard";
+                }, 300);
+            } else {
+                if(retorno.codigo_erro == 1) {
+                    $("#senha").val("");
+                    $("#senha").focus();
+                } else if(retorno.codigo_erro == 2) {
+                    $("#email").val("");
+                    $("#email").focus();
+                }
+
+                toastr.error(retorno.mensagem);
+            }
+
+            $("#logar").prop("disabled", 0);
+            $("#logar").text("Entrar");
+
         }, "JSON");
     }
 
@@ -47,6 +69,11 @@ $(document).ready(() => {
             return;
         }
 
+        if(senha && senha.length < 8) {
+            toastr.error('Digite uma senha de pelo menos 8 caracteres!');
+            return;
+        }
+
         if(!confirmar_senha) {
             toastr.error('Digite a confirmação da senha');
             return;
@@ -57,14 +84,28 @@ $(document).ready(() => {
             return;
         }
 
+        $("#cadastrar").prop("disabled", 1);
+        $("#cadastrar").text("Cadastrando..."); 
+
         $.post("/login/salvar_cadastro", {
             nome,
             email,  
             senha,
             confirmar_senha
         }, (retorno) => {
-            console.log(retorno);
+            if(retorno.erro) {
+                toastr.error(retorno.mensagem);
+                $("#email").focus();
+            } else {
+                toastr.success(retorno.mensagem);
+                setTimeout(() => {
+                    location.href = "/login";
+                }, 300);
+            }
+
+            $("#cadastrar").prop("disabled", 0);
+            $("#cadastrar").text("Criar Conta"); 
+
         }, "JSON");
     }
-
 });

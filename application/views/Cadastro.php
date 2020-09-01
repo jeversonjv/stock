@@ -54,7 +54,7 @@
                       <input type="password" class="form-control form-control-user" id="confirmar_senha" placeholder="Confirmar Senha">
                     </div>
                     <button id="cadastrar" type="button" class="btn btn-primary btn-user btn-block">
-                        Criar conta
+                        Criar Conta
                     </button>
                   </form>
                   <hr>

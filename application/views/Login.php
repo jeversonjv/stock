@@ -48,7 +48,7 @@
                       <input type="password" class="form-control form-control-user" id="senha" placeholder="Senha">
                     </div>
                     <button id="logar" type="button" class="btn btn-primary btn-user btn-block">
-                      Login
+                      Entrar
                     </button>
                   </form>
                   <hr>
