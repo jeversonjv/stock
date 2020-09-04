@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title> <?= $titulo ?> </title>
 
     <!-- Custom fonts for this template-->
     <link href="/assets/template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -421,6 +421,12 @@
     <!-- Page level custom scripts -->
     <script src="/assets/template/js/demo/chart-area-demo.js"></script>
     <script src="/assets/template/js/demo/chart-pie-demo.js"></script>
+
+    <?php if(count($scripts) > 0) { ?>
+        <?php foreach($scripts as $script) { ?>
+            <script src="<?= $script ?>?v=<?= VERSAO_SISTEMA ?>"></script>
+        <?php } ?>
+    <?php } ?>
 
 </body>
 
