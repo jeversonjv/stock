@@ -55,12 +55,12 @@ class Template {
         $this->loadScriptPrincipal($view);
         $this->loadConteudo($view, $data);
 
-        $arr = array(
+        $data = array(
             "titulo" => $this->titulo,
             "scripts" => $this->scripts,
             "conteudo" => $this->conteudo
         );
 
-        $this->CI->load->view($layout, $arr);
+        $this->CI->load->view($layout, $data);
     }
 }
