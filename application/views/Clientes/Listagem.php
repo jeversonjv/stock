@@ -1,7 +1,8 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="align-middle m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
+        <a class="btn btn-primary text-white" href="#"> Adicionar </a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -34,45 +35,15 @@
                         <td>jeversontp@gmail.com</td>
                         <td>-- / (35) 98448-9589</td>
                         <td>000.000.000-00</td>
-                        <td>Visualizar</td>
-                        <td>Editar</td>
-                        <td>Excluir</td>
-                    </tr>
-                    <tr>
-                        <td>Jeverson</td>
-                        <td>jeversontp@gmail.com</td>
-                        <td>-- / (35) 98448-9589</td>
-                        <td>000.000.000-00</td>
-                        <td>Visualizar</td>
-                        <td>Editar</td>
-                        <td>Excluir</td>
-                    </tr>
-                    <tr>
-                        <td>Jeverson</td>
-                        <td>jeversontp@gmail.com</td>
-                        <td>-- / (35) 98448-9589</td>
-                        <td>000.000.000-00</td>
-                        <td>Visualizar</td>
-                        <td>Editar</td>
-                        <td>Excluir</td>
-                    </tr>
-                    <tr>
-                        <td>Jeverson</td>
-                        <td>jeversontp@gmail.com</td>
-                        <td>-- / (35) 98448-9589</td>
-                        <td>000.000.000-00</td>
-                        <td>Visualizar</td>
-                        <td>Editar</td>
-                        <td>Excluir</td>
-                    </tr>
-                    <tr>
-                        <td>Jeverson</td>
-                        <td>jeversontp@gmail.com</td>
-                        <td>-- / (35) 98448-9589</td>
-                        <td>000.000.000-00</td>
-                        <td>Visualizar</td>
-                        <td>Editar</td>
-                        <td>Excluir</td>
+                        <td> 
+                            <a class="btn btn-primary text-white" href="#"> <i class="fas fa-eye"></i> </a>
+                        </td>
+                        <td> 
+                            <a class="btn btn-warning text-white" href="#"> <i class="fas fa-edit"></i> </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger text-white" href="#"> <i class="fas fa-trash"></i></i> </a> 
+                        </td>
                     </tr>
                 </tbody>
             </table>
