@@ -45,7 +45,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item <?= $sidebarActive !== NULL && $sidebarActive === SIDEBAR_DASHBOARD_ACTIVE ? "active" : "" ?>">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -55,7 +55,7 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?= $sidebarActive !== NULL && $sidebarActive === SIDEBAR_CLIENTES_ACTIVE ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes"
                     aria-expanded="true" aria-controls="collapseClientes">
                     <i class="fas fa-users"></i>
@@ -70,7 +70,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?= $sidebarActive !== NULL && $sidebarActive === SIDEBAR_FORNECEDORES_ACTIVE ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFornecedores"
                     aria-expanded="true" aria-controls="collapseFornecedores">
                     <i class="fas fa-truck-loading"></i>
@@ -85,7 +85,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?= $sidebarActive !== NULL && $sidebarActive === SIDEBAR_PRODUTOS_ACTIVE ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProdutos"
                     aria-expanded="true" aria-controls="collapseProdutos">
                     <i class="fas fa-box-open"></i>
@@ -101,7 +101,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?= $sidebarActive !== NULL && $sidebarActive === SIDEBAR_VENDAS_ACTIVE ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendas"
                     aria-expanded="true" aria-controls="collapseVendas">
                     <i class="fas fa-money-bill-wave-alt"></i>

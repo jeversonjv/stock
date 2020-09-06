@@ -5,17 +5,23 @@ class Template {
     private $titulo;
     private $scripts;
     private $conteudo;
+    private $sidebarActive;
     private $CI;
 
     public function __construct(){
         $this->titulo = "Stock - Controle de Estoque";
         $this->scripts = [];
         $this->conteudo = "";
+        $this->sidebarActive = NULL;
         $this->CI =& get_instance();
     }
 
     public function setTitulo($titulo) {
         $this->titulo = $titulo;
+    }
+
+    public function setSidebarActive($sidebarActive) {
+        $this->sidebarActive = $sidebarActive;
     }
 
     public function addScript($caminho, $arquivo) {
@@ -51,14 +57,33 @@ class Template {
         $this->conteudo = $this->CI->load->view($view, $data, TRUE);
     }
 
-    public function loadView($layout, $view, $data = NULL) {
+    private function trySetSidebarActive($view) {
+        if(strpos(strtolower($view), "dashboard") !== FALSE) {
+            $this->setSidebarActive(SIDEBAR_DASHBOARD_ACTIVE);
+        } else if(strpos(strtolower($view), "clientes") !== FALSE) {
+            $this->setSidebarActive(SIDEBAR_CLIENTES_ACTIVE);
+        } else if(strpos(strtolower($view), "fornecedores") !== FALSE) {
+            $this->setSidebarActive(SIDEBAR_FORNECEDORES_ACTIVE);
+        } else if(strpos(strtolower($view), "produtos") !== FALSE) {
+            $this->setSidebarActive(SIDEBAR_PRODUTOS_ACTIVE);
+        } else if(strpos(strtolower($view), "vendas") !== FALSE) {
+            $this->setSidebarActive(SIDEBAR_VENDAS_ACTIVE);
+        }
+    }
+
+    public function loadView($layout, $view, $data = NULL, $setSideBarActive = TRUE) {
         $this->loadScriptPrincipal($view);
         $this->loadConteudo($view, $data);
+
+        if($setSideBarActive) {
+            $this->trySetSidebarActive($view);
+        }
 
         $data = array(
             "titulo" => $this->titulo,
             "scripts" => $this->scripts,
-            "conteudo" => $this->conteudo
+            "conteudo" => $this->conteudo,
+            "sidebarActive" => $this->sidebarActive
         );
 
         $this->CI->load->view($layout, $data);
