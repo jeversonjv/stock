@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="/assets/template/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="/assets/template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -31,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-layer-group"></i>
                 </div>
@@ -43,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -61,7 +64,7 @@
                 <div id="collapseClientes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gerenciamento</h6>
-                        <a class="collapse-item" href="login.html">Cadastro</a>
+                        <a class="collapse-item" href="/clientes">Cadastro</a>
                     </div>
                 </div>
             </li>
@@ -261,6 +264,13 @@
     <!-- Page level custom scripts -->
     <script src="/assets/template/js/demo/chart-area-demo.js"></script>
     <script src="/assets/template/js/demo/chart-pie-demo.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/assets/template/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/assets/template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/assets/template/js/demo/datatables-demo.js"></script>
 
     <?php if(count($scripts) > 0) { ?>
         <?php foreach($scripts as $script) { ?>
