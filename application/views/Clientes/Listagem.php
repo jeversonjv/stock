@@ -2,7 +2,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
         <h6 class="align-middle m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
-        <a class="btn btn-primary text-white" href="#"> Adicionar </a>
+        <a class="btn btn-primary text-white" href="/clientes/adicionar"> Adicionar </a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
