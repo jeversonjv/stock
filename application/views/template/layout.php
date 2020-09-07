@@ -23,6 +23,9 @@
     <!-- Custom styles for this page -->
     <link href="/assets/template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <!-- Custom css -->
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+
 </head>
 
 <body id="page-top">
@@ -274,6 +277,9 @@
 
     <!-- jquery mask -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <!-- jquery validator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
     <?php if(count($scripts) > 0) { ?>
         <?php foreach($scripts as $script) { ?>

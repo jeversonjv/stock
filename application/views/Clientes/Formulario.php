@@ -3,11 +3,11 @@
         <h6 class="align-middle m-0 font-weight-bold text-primary">Adicionar Novo Cliente</h6>
         <div>
             <a class="btn btn-secondary text-white" href="#" onClick="window.history.back()"> Voltar </a>    
-            <a class="btn btn-primary text-white" href="#"> Salvar </a>
+            <a class="btn btn-primary text-white" id="salvar" > Salvar </a>
         </div>
     </div>
     <div class="card-body">
-        <form method="post" action="/clientes/salvar">
+        <form id="formulario" method="post" action="/clientes/salvar">
 
             <h6 class="align-middle m-0 font-weight-bold">Dados Básicos</h6>
             <hr/>
@@ -34,6 +34,7 @@
                     <div class="form-group">
                         <label> Sexo* </label>
                         <select name="sexo" id="sexo" class="form-control">
+                            <option value="">Selecione uma opção</option>
                             <option value="M">Masculino</option>
                             <option value="F">Feminino</option>
                             <option value="N">Prefiro não declarar</option>
@@ -106,6 +107,7 @@
                     <div class="form-group">
                         <label> Estado* </label>
                         <select name="estado" id="estado" class="form-control">
+                            <option value="">Selecione uma opção</option>
                             <?php foreach(estadosBrasileiros() as $sigla => $estado) { ?>
                                 <option value="<?= $sigla ?>"> <?= $estado ?> </option>
                             <?php } ?>
