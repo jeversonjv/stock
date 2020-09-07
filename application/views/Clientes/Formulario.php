@@ -106,9 +106,9 @@
                     <div class="form-group">
                         <label> Estado* </label>
                         <select name="estado" id="estado" class="form-control">
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                            <option value="N">Prefiro não declarar</option>
+                            <?php foreach(estadosBrasileiros() as $sigla => $estado) { ?>
+                                <option value="<?= $sigla ?>"> <?= $estado ?> </option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>

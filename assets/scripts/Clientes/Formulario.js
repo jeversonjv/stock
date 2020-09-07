@@ -9,21 +9,18 @@ $(document).ready(() => {
                 $("#endereco").val("");
                 $("#bairro").val("");
                 $("#cidade").val("");
-                // if(retorno.uf) $("#estado").val(retorno.uf);
+                $("#estado").val("AC");
                 $("#complemento").val("");
 
                 $.get(`https://viacep.com.br/ws/${cep}/json/`, (retorno) => {
-
                     if(retorno.logradouro) $("#endereco").val(retorno.logradouro);
                     if(retorno.bairro) $("#bairro").val(retorno.bairro);
                     if(retorno.localidade) $("#cidade").val(retorno.localidade);
-                    // if(retorno.uf) $("#estado").val(retorno.uf);
+                    if(retorno.uf) $("#estado").val(retorno.uf);
                     if(retorno.complemento) $("#complemento").val(retorno.complemento);
-
                 }, "JSON");
             }
         }
-
     });
 
     const aplicaMascaras = () => {
