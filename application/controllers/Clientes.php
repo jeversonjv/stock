@@ -15,4 +15,21 @@ class Clientes extends CI_Controller {
         $this->template->loadView("template/layout", "clientes/listagem");
     }
 
+    public function adicionar() {
+        $this->template->setTitulo("Clientes");
+        $this->template->loadView("template/layout", "clientes/formulario");
+    }
+
+    public function editar($cliente_id) {
+
+    }
+
+    public function salvar() {
+
+    }
+
+    public function excluir($cliente_id) {
+
+    }
+
 }
