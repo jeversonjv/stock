@@ -12,12 +12,12 @@ class Clientes extends CI_Controller {
 
     public function index() {
         $this->template->setTitulo("Clientes");
-        $this->template->loadView("template/layout", "clientes/listagem");
+        $this->template->loadView("template/layout", "Clientes/Listagem");
     }
 
     public function adicionar() {
         $this->template->setTitulo("Clientes");
-        $this->template->loadView("template/layout", "clientes/formulario");
+        $this->template->loadView("template/Layout", "Clientes/Formulario");
     }
 
     public function editar($cliente_id) {

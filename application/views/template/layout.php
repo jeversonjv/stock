@@ -262,8 +262,8 @@
     <script src="/assets/template/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/assets/template/js/demo/chart-area-demo.js"></script>
-    <script src="/assets/template/js/demo/chart-pie-demo.js"></script>
+    <!-- <script src="/assets/template/js/demo/chart-area-demo.js"></script> -->
+    <!-- <script src="/assets/template/js/demo/chart-pie-demo.js"></script> -->
 
     <!-- Page level plugins -->
     <script src="/assets/template/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -272,9 +272,12 @@
     <!-- Page level custom scripts -->
     <script src="/assets/template/js/demo/datatables-demo.js"></script>
 
+    <!-- jquery mask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
     <?php if(count($scripts) > 0) { ?>
         <?php foreach($scripts as $script) { ?>
-            <script src="<?= $script ?>?v=<?= VERSAO_SISTEMA ?>"></script>
+            <script src="/<?= $script ?>?v=<?= VERSAO_SISTEMA ?>"></script>
         <?php } ?>
     <?php } ?>
 

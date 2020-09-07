@@ -15,13 +15,13 @@
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> Nome* </label>
-                        <input type="text" name="nome" id="nome" placeholder="Nome" class="form-control" />
+                        <input type="text" name="nome" id="nome" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> E-mail* </label>
-                        <input type="email" name="email" id="email" placeholder="E-mail" class="form-control" />
+                        <input type="email" name="email" id="email" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
@@ -46,25 +46,25 @@
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> Telefone </label>
-                        <input type="text" name="telefone" id="telefone" placeholder="Telefone" class="form-control" />
+                        <input type="text" name="telefone" id="telefone" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> Celular* </label>
-                        <input type="text" name="celular" id="celular" placeholder="Celular" class="form-control" />
+                        <input type="text" name="celular" id="celular" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> RG* </label>
-                        <input type="text" name="rg" id="rg" placeholder="RG" class="form-control" />
+                        <input type="text" name="rg" id="rg" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> CPF* </label>
-                        <input type="text" name="cpf" id="cpf" placeholder="CPF" class="form-control" />
+                        <input type="text" name="cpf" id="cpf" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -75,31 +75,31 @@
                 <div class="col-md-2 col-xs-12">
                     <div class="form-group">
                         <label> CEP* </label>
-                        <input type="text" name="cep" id="cep" placeholder="CEP" class="form-control" />
+                        <input type="text" name="cep" id="cep" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <div class="form-group">
                         <label> Endereço* </label>
-                        <input type="text" name="telefone" id="telefone" placeholder="Endereço" class="form-control" />
+                        <input type="text" name="endereco" id="endereco" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-12">
                     <div class="form-group">
                         <label> Bairro* </label>
-                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control" />
+                        <input type="text" name="bairro" id="bairro" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-12">
                     <div class="form-group">
                         <label> Número* </label>
-                        <input type="text" name="numero" id="numero" placeholder="Número" class="form-control" />
+                        <input type="text" name="numero" id="numero" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-12">
                     <div class="form-group">
                         <label> Cidade* </label>
-                        <input type="text" name="cidade" id="cidade" placeholder="Cidade" class="form-control" />
+                        <input type="text" name="cidade" id="cidade" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-12">
@@ -115,7 +115,7 @@
                 <div class="col-md-10 col-xs-12">
                     <div class="form-group">
                         <label> Complemento </label>
-                        <input type="text" name="complemento" id="complemento" placeholder="Complemento" class="form-control" />
+                        <input type="text" name="complemento" id="complemento" class="form-control" />
                     </div>
                 </div>
             </div>
