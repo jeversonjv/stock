@@ -34,7 +34,7 @@ class ClienteModel extends CI_Model {
         return $this->db->update($this->tbl, $data);
     }
 
-    private function delete($cliente_id) {
+    public function delete($cliente_id) {
         $this->db->where("cliente_id", $cliente_id);
         return $this->db->delete($this->tbl);
     }

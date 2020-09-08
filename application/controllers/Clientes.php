@@ -35,6 +35,18 @@ class Clientes extends CI_Controller {
         $this->template->loadView("template/Layout", "Clientes/Formulario", $this->data);
     }
 
+    public function excluir($cliente_id) {
+        $res = $this->clienteModel->delete($cliente_id);
+
+        if($res) {
+            $this->session->set_flashdata("mensagemSucesso", "Cliente excluído Com Sucesso!");
+        } else {
+            $this->session->set_flashdata("mensagemErro", "Ocorreu um erro ao excluir o cliente!");
+        }
+
+        redirect("/clientes");
+    }
+
     public function salvar() {
         try {
             $data = carregarDadosPOST($this->input->post());
@@ -48,10 +60,6 @@ class Clientes extends CI_Controller {
             $this->session->set_flashdata("mensagemErro", $e->getMessage());
             redirect($cliente_id ? "/clientes/editar/{$cliente_id}" : "/clientes/adicionar");
         }
-    }
-
-    public function excluir($cliente_id) {
-
     }
 
 }
