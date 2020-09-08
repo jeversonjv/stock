@@ -11,7 +11,7 @@
     <?php } ?>
     
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <h6 class="align-middle m-0 font-weight-bold text-primary">Adicionar Novo Cliente</h6>
+        <h6 class="align-middle m-0 font-weight-bold text-primary"><?= !empty($cliente_id) ? "Editar" : "Adicionar Novo" ?> Cliente</h6>
         <div>
             <a class="btn btn-secondary text-white" href="#" onClick="window.history.back()"> Voltar </a>    
             <a class="btn btn-primary text-white" id="salvar" > Salvar </a>

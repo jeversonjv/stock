@@ -5,11 +5,11 @@ class ClienteModel extends CI_Model {
 
     private $tbl = "cliente";
 
-    private function get_all() {
+    public function get_all() {
         return $this->db->get($this->tbl);
     }
 
-    private function get_by_id($cliente_id) {
+    public function get_by_id($cliente_id) {
         $this->db->where("cliente_id", $cliente_id);
         return $this->db->get($this->tbl);
     }
@@ -57,12 +57,26 @@ class ClienteModel extends CI_Model {
         if($this->form_validation->run()){
             $cliente = $this->get_by_cpf($data["cpf"]);
             if($cliente->num_rows() > 0) {
-                throw new Exception("CPF já cadastrado na base!");
+                if($cliente_id) {
+                    $cliente = $cliente->row();
+                    if($cliente->cliente_id != $cliente_id) {
+                        throw new Exception("CPF já cadastrado na base!");
+                    }
+                } else {
+                    throw new Exception("CPF já cadastrado na base!");
+                }
             }
 
             $cliente = $this->get_by_email($data["email"]);
             if($cliente->num_rows() > 0) {
-                throw new Exception("E-mail já cadastrado na base!");
+                if($cliente_id) {
+                    $cliente = $cliente->row();
+                    if($cliente->cliente_id != $cliente_id) {
+                        throw new Exception("E-mail já cadastrado na base!");
+                    }
+                } else {
+                    throw new Exception("E-mail já cadastrado na base!");
+                }
             }
 
             if($cliente_id) {
