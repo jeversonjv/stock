@@ -22,7 +22,8 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th>Telefone / Celular</th>
+                        <th>Celular</th>
+                        <th>Telefone</th>
                         <th>CPF</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
@@ -33,7 +34,8 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th>Telefone / Celular</th>
+                        <th>Celular</th>
+                        <th>Telefone</th>
                         <th>CPF</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
@@ -41,21 +43,24 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td>Jeverson</td>
-                        <td>jeversontp@gmail.com</td>
-                        <td>-- / (35) 98448-9589</td>
-                        <td>000.000.000-00</td>
-                        <td> 
-                            <a class="btn btn-primary text-white" href="#"> <i class="fas fa-eye"></i> </a>
-                        </td>
-                        <td> 
-                            <a class="btn btn-warning text-white" href="#"> <i class="fas fa-edit"></i> </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger text-white" href="#"> <i class="fas fa-trash"></i></i> </a> 
-                        </td>
-                    </tr>
+                    <?php foreach($clientes as $cliente) { ?> 
+                        <tr>
+                            <td> <?= $cliente->nome ?> </td>
+                            <td> <?= $cliente->email ?> </td>
+                            <td> <?= $cliente->celular ?> </td>
+                            <td> <?= $cliente->telefone ?? "--" ?> </td>
+                            <td> <?= $cliente->cpf ?> </td>
+                            <td> 
+                                <a class="btn btn-primary text-white" href="/clientes/editar/<?= $cliente->cliente_id ?>"> <i class="fas fa-eye"></i> </a>
+                            </td>
+                            <td> 
+                                <a class="btn btn-warning text-white" href="/clientes/editar/<?= $cliente->cliente_id ?>"> <i class="fas fa-edit"></i> </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger text-white" href="#"> <i class="fas fa-trash"></i></i> </a> 
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
