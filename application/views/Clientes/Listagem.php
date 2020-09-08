@@ -1,5 +1,16 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
+
+    <?php if($this->session->flashdata("mensagemSucesso")) { ?>
+        <div class="col-lg-12 mb-2 mt-2 text-center">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    <?= $this->session->flashdata("mensagemSucesso") ?> 
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
         <h6 class="align-middle m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
         <a class="btn btn-primary text-white" href="/clientes/adicionar"> Adicionar </a>

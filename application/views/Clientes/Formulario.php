@@ -1,4 +1,15 @@
 <div class="card shadow mb-4">
+
+    <?php if($this->session->flashdata("mensagemErro")) { ?>
+        <div class="col-lg-12 mb-2 mt-2 text-center">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    <?= $this->session->flashdata("mensagemErro") ?> 
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+    
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
         <h6 class="align-middle m-0 font-weight-bold text-primary">Adicionar Novo Cliente</h6>
         <div>
