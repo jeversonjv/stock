@@ -3,23 +3,35 @@ defined("BASEPATH") OR exit("No direct script access allowed");
 
 class ClienteModel extends CI_Model {
 
-    private $tbl = "cliente";
+    private $tbl;
+    private $usuario_id;
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->tbl = "cliente";
+        $this->usuario_id = $this->session->userdata("usuario_id");
+    }
 
     public function get_all() {
+        $this->db->where("usuario_id", $this->usuario_id);
         return $this->db->get($this->tbl);
     }
 
     public function get_by_id($cliente_id) {
+        $this->db->where("usuario_id", $this->usuario_id);
         $this->db->where("cliente_id", $cliente_id);
         return $this->db->get($this->tbl);
     }
 
     private function get_by_cpf($cpf) {
+        $this->db->where("usuario_id", $this->usuario_id);
         $this->db->where("cpf", $cpf);
         return $this->db->get($this->tbl);
     }
 
     private function get_by_email($email) {
+        $this->db->where("usuario_id", $this->usuario_id);
         $this->db->where("email", $email);
         return $this->db->get($this->tbl);
     }
@@ -35,6 +47,7 @@ class ClienteModel extends CI_Model {
     }
 
     public function delete($cliente_id) {
+        $this->db->where("usuario_id", $this->usuario_id);
         $this->db->where("cliente_id", $cliente_id);
         return $this->db->delete($this->tbl);
     }
@@ -83,6 +96,7 @@ class ClienteModel extends CI_Model {
                 $this->update($cliente_id, $data);
             } else {
                 $data["data_cadastro"] = date("Y-m-d H:i:s");
+                $data["usuario_id"] = $this->usuario_id;
                 $cliente_id = $this->salvar($data);
             }
 

@@ -29,7 +29,11 @@ class Clientes extends CI_Controller {
     }
 
     public function editar($cliente_id) {
-        $this->data["cliente"] = $this->clienteModel->get_by_id($cliente_id)->row();
+        $cliente = $this->clienteModel->get_by_id($cliente_id);
+
+        if($cliente->num_rows() === 0) redirect("/clientes");
+
+        $this->data["cliente"] = $cliente->row();
         $this->data["cliente_id"] = $cliente_id;
         $this->template->setTitulo("Clientes - Editar");
         $this->template->loadView("template/Layout", "Clientes/Formulario", $this->data);
