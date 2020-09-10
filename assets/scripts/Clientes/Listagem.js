@@ -7,7 +7,7 @@ $(document).ready(() => {
             text: 'Não será possível recuperar o registro',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Sim, pode deltar!',
+            confirmButtonText: 'Sim, pode deletar!',
             cancelButtonText: 'Cancelar!',
             reverseButtons: true
         }).then((result) => {
