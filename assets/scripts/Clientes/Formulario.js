@@ -29,7 +29,7 @@ $(document).ready(() => {
             cep: { required: "Campo é obrigatório", minlength: "Preencha Corretamente" },
             endereco: { required: "Campo é obrigatório" },
             bairro: { required: "Campo é obrigatório" },
-            numero: { required: "Campo é obrigatório" },
+            numero: { required: "Campo é obrigatório", number: "Digite somente números" },
             cidade: { required: "Campo é obrigatório" },
             estado: { required: "Campo é obrigatório" },
         }
