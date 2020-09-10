@@ -61,7 +61,7 @@
                             <td> <?= $cliente->telefone ?? "--" ?> </td>
                             <td> <?= $cliente->cpf ?> </td>
                             <td> 
-                                <a class="btn btn-primary text-white" href="/clientes/editar/<?= $cliente->cliente_id ?>"> <i class="fas fa-eye"></i> </a>
+                                <a class="btn btn-primary text-white" href="/clientes/visualizar/<?= $cliente->cliente_id ?>"> <i class="fas fa-eye"></i> </a>
                             </td>
                             <td> 
                                 <a class="btn btn-warning text-white" href="/clientes/editar/<?= $cliente->cliente_id ?>"> <i class="fas fa-edit"></i> </a>

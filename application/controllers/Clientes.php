@@ -28,6 +28,17 @@ class Clientes extends CI_Controller {
         $this->template->loadView("template/Layout", "Clientes/Formulario", $this->data);
     }
 
+    public function visualizar($cliente_id) {
+        $cliente = $this->clienteModel->get_by_id($cliente_id);
+
+        if($cliente->num_rows() === 0) redirect("/clientes");
+
+        $this->data["cliente"] = $cliente->row();
+        $this->data["somente_visualizar"] = true;
+        $this->template->setTitulo("Clientes - Visualizar");
+        $this->template->loadView("template/Layout", "Clientes/Formulario", $this->data);
+    }
+
     public function editar($cliente_id) {
         $cliente = $this->clienteModel->get_by_id($cliente_id);
 
