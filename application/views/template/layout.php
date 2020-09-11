@@ -82,7 +82,7 @@
                 <div id="collapseFornecedores" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gerenciamento</h6>
-                        <a class="collapse-item" href="login.html">Cadastro</a>
+                        <a class="collapse-item" href="/fornecedores">Cadastro</a>
                     </div>
                 </div>
             </li>
@@ -265,8 +265,8 @@
     <script src="/assets/template/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <!-- <script src="/assets/template/js/demo/chart-area-demo.js"></script> -->
-    <!-- <script src="/assets/template/js/demo/chart-pie-demo.js"></script> -->
+    <script src="/assets/template/js/demo/chart-area-demo.js"></script>
+    <script src="/assets/template/js/demo/chart-pie-demo.js"></script>
 
     <!-- Page level plugins -->
     <script src="/assets/template/vendor/datatables/jquery.dataTables.min.js"></script>
