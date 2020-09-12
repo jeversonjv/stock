@@ -117,7 +117,7 @@
                         <input type="text" name="cidade" id="cidade" class="form-control" value="<?= !empty($cliente->cidade) ? $cliente->cidade : ""?>" <?= isset($somente_visualizar) ? "readonly" : "" ?> />
                     </div>
                 </div>
-                <div class="col-md-2 col-xs-12">
+                <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> Estado* </label>
                         <select name="estado" id="estado" class="form-control" <?= isset($somente_visualizar) ? "disabled" : "" ?>>
@@ -128,7 +128,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-10 col-xs-12">
+                <div class="col-md-9 col-xs-12">
                     <div class="form-group">
                         <label> Complemento </label>
                         <input type="text" name="complemento" id="complemento" class="form-control" value="<?= !empty($cliente->complemento) ? $cliente->complemento : ""?>" <?= isset($somente_visualizar) ? "readonly" : "" ?> />
