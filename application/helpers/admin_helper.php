@@ -68,7 +68,7 @@ if(!function_exists("carregarDadosPostArray")) {
         foreach($post as $keyPost => $valuePost) {
             if(is_array($valuePost)) {
                 foreach($valuePost as $idxArrayPost => $valueArrayPost) {
-                    $arr[$idxArrayPost][$keyPost] = $valueArrayPost;
+                    $arr[$idxArrayPost][$keyPost] = !$valueArrayPost ? NULL : $valueArrayPost;
                 }
             }
         }
