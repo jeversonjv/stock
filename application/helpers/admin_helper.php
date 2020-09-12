@@ -34,16 +34,47 @@ if(!function_exists("estadosBrasileiros")) {
     }
 }
 
-if(!function_exists("carregarDadosPOST")) {
-    function carregarDadosPOST($post) {
+if(!function_exists("carregarDadosPost")) {
+    function carregarDadosPost($post) {
         $arr = [];
         foreach($post as $key => $value) {
-            $arr[$key] = !$value ? NULL : $value;
+            if(!is_array($value)) $arr[$key] = !$value ? NULL : $value;
         }
         return $arr;
     }
 }
 
+if(!function_exists("carregarDadosPostArray")) {
+    /*
+        A ideia desse metódo é transformar o post posicional que vem do HTML
+        em um array pronto pra ser enviado para o banco de dados.
+
+        Transforma disso:
+        $array = [
+            "nome" => [123, 147],
+            "endereco" => [123, 147],
+            "bairro" => [123, 147],
+        ];
+
+        Para isso:
+        $array = [
+            0 => ["nome" => 123, "endereco" => 123, "bairro" => 123],
+            1 => ["nome" => 147, "endereco" => 147, "bairro" => 147]
+        ];
+    */
+
+    function carregarDadosPostArray($post) {
+        $arr = [];
+        foreach($post as $keyPost => $valuePost) {
+            if(is_array($valuePost)) {
+                foreach($valuePost as $idxArrayPost => $valueArrayPost) {
+                    $arr[$idxArrayPost][$keyPost] = $valueArrayPost;
+                }
+            }
+        }
+        return $arr;
+    }
+}
 
 if(!function_exists("dd")) {
     function dd($data){
