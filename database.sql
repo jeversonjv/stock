@@ -35,7 +35,7 @@ create table cliente (
 
 create table produto(
 	produto_id int not null auto_increment,
-	cliente_id int null,
+	usuario_id int null,
     categoria_id int null,
 	fornecedor_id int null,
 	nome varchar(255) null,
@@ -50,12 +50,12 @@ create table produto(
     primary key(produto_id),
     index idx_categoria_id (categoria_id),
     index idx_fornecedor_id (fornecedor_id),
-    index idx_cliente_id (cliente_id)
+    index idx_usuario_id (usuario_id)
 );
 
 create table fornecedor (
 	fornecedor_id int not null auto_increment,
-    cliente_id int null,
+    usuario_id int null,
     nome varchar(255) null,
     email varchar(255) null,
     telefone char(14) null, 
@@ -73,7 +73,7 @@ create table fornecedor (
     estado char(2) null,
     data_cadastro datetime,
     primary key(fornecedor_id),
-    index idx_cliente_id (cliente_id)
+    index idx_usuario_id (usuario_id)
 );
 
 create table venda (
@@ -96,10 +96,10 @@ create table venda_produto (
 
 create table categoria (
 	categoria_id int not null auto_increment,
-    cliente_id int null,
+    usuario_id int null,
     nome varchar(255) null,
 	descricao varchar(255) null,
     data_cadastro datetime null,
     primary key(categoria_id),
-	index idx_cliente_id (cliente_id)
+	index idx_usuario_id (usuario_id)
 );
