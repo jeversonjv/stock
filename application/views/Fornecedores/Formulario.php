@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
-                        <label> Estado* </label>
+                        <label> Estado </label>
                         <select name="estado" id="estado" class="form-control" <?=isset($somente_visualizar) ? "disabled" : ""?>>
                             <option value="" <?=!empty($fornecedor->sexo) ? "" : "selected"?>>Selecione uma opção</option>
                             <?php foreach (estadosBrasileiros() as $sigla => $estado) {?>

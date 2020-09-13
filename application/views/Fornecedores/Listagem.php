@@ -34,7 +34,7 @@
                         <th>E-mail</th>
                         <th>Celular</th>
                         <th>Telefone</th>
-                        <th>Tipo de Pessoa</th>
+                        <th>CNPJ</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
                         <th>Excluir</th>
@@ -46,14 +46,31 @@
                         <th>E-mail</th>
                         <th>Celular</th>
                         <th>Telefone</th>
-                        <th>Tipo de Pessoa</th>
+                        <th>CNPJ</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
                 </tfoot>
                 <tbody>
-
+                    <?php foreach($fornecedores as $fornecedor) { ?> 
+                        <tr>
+                            <td> <?= $fornecedor->nome ?> </td>
+                            <td> <?= $fornecedor->email ?> </td>
+                            <td> <?= $fornecedor->celular ?> </td>
+                            <td> <?= $fornecedor->telefone ?? "--" ?> </td>
+                            <td> <?= $fornecedor->cnpj ?> </td>
+                            <td> 
+                                <a class="btn btn-primary text-white" href="/fornecedores/visualizar/<?= $fornecedor->fornecedor_id ?>"> <i class="fas fa-eye"></i> </a>
+                            </td>
+                            <td> 
+                                <a class="btn btn-warning text-white" href="/fornecedores/editar/<?= $fornecedor->fornecedor_id ?>"> <i class="fas fa-edit"></i> </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger text-white btn-deletar" data-fornecedor_id="<?= $fornecedor->fornecedor_id ?>" > <i class="fas fa-trash"></i></i> </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

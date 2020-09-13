@@ -18,15 +18,15 @@ class FornecedorModel extends CI_Model {
         return $this->db->get($this->tbl);
     }
 
-    public function get_by_id($cliente_id) {
+    public function get_by_id($fornecedor_id) {
         $this->db->where("usuario_id", $this->usuario_id);
-        $this->db->where("cliente_id", $cliente_id);
+        $this->db->where("fornecedor_id", $fornecedor_id);
         return $this->db->get($this->tbl);
     }
 
-    private function get_by_cpf($cpf) {
+    private function get_by_cnpj($cnpj) {
         $this->db->where("usuario_id", $this->usuario_id);
-        $this->db->where("cpf", $cpf);
+        $this->db->where("cnpj", $cnpj);
         return $this->db->get($this->tbl);
     }
 
@@ -41,50 +41,41 @@ class FornecedorModel extends CI_Model {
         return $this->db->insert_id();
     }
 
-    private function update($cliente_id, $data) {
-        $this->db->where("cliente_id", $cliente_id);
+    private function update($fornecedor_id, $data) {
+        $this->db->where("fornecedor_id", $fornecedor_id);
         return $this->db->update($this->tbl, $data);
     }
 
-    public function delete($cliente_id) {
+    public function delete($fornecedor_id) {
         $this->db->where("usuario_id", $this->usuario_id);
-        $this->db->where("cliente_id", $cliente_id);
+        $this->db->where("fornecedor_id", $fornecedor_id);
         return $this->db->delete($this->tbl);
     }
 
-    function salvar_cliente($data, $cliente_id = NULL) {
+    function salvar_fornecedor($data, $fornecedor_id = NULL) {
         $this->form_validation->set_rules("nome", "Nome", "trim|required");
         $this->form_validation->set_rules("email", "Email", "trim|required|valid_email");
-        $this->form_validation->set_rules("data_nascimento", "Data de Nascimento", "required");
-        $this->form_validation->set_rules("sexo", "Sexo", "required");
         $this->form_validation->set_rules("celular", "Celular", "trim|required");
-        $this->form_validation->set_rules("rg", "RG", "trim|required");
-        $this->form_validation->set_rules("cpf", "CPF", "trim|required");
-        $this->form_validation->set_rules("cep", "CEP", "trim|required");
-        $this->form_validation->set_rules("endereco", "Endereço", "trim|required");
-        $this->form_validation->set_rules("bairro", "Bairro", "trim|required");
-        $this->form_validation->set_rules("numero", "Número", "trim|required");
-        $this->form_validation->set_rules("cidade", "Cidade", "trim|required");
-        $this->form_validation->set_rules("estado", "Estado", "trim|required");
+        $this->form_validation->set_rules("cnpj", "CNPJ", "trim|required");
 
         if($this->form_validation->run()){
-            $cliente = $this->get_by_cpf($data["cpf"]);
-            if($cliente->num_rows() > 0) {
-                if($cliente_id) {
-                    $cliente = $cliente->row();
-                    if($cliente->cliente_id != $cliente_id) {
-                        throw new Exception("CPF já cadastrado na base!");
+            $fornecedor = $this->get_by_cnpj($data["cnpj"]);
+            if($fornecedor->num_rows() > 0) {
+                if($fornecedor_id) {
+                    $fornecedor = $fornecedor->row();
+                    if($fornecedor->fornecedor_id != $fornecedor_id) {
+                        throw new Exception("CNPJ já cadastrado na base!");
                     }
                 } else {
-                    throw new Exception("CPF já cadastrado na base!");
+                    throw new Exception("CNPJ já cadastrado na base!");
                 }
             }
 
-            $cliente = $this->get_by_email($data["email"]);
-            if($cliente->num_rows() > 0) {
-                if($cliente_id) {
-                    $cliente = $cliente->row();
-                    if($cliente->cliente_id != $cliente_id) {
+            $fornecedor = $this->get_by_email($data["email"]);
+            if($fornecedor->num_rows() > 0) {
+                if($fornecedor_id) {
+                    $fornecedor = $fornecedor->row();
+                    if($fornecedor->fornecedor_id != $fornecedor_id) {
                         throw new Exception("E-mail já cadastrado na base!");
                     }
                 } else {
@@ -92,15 +83,15 @@ class FornecedorModel extends CI_Model {
                 }
             }
 
-            if($cliente_id) {
-                $this->update($cliente_id, $data);
+            if($fornecedor_id) {
+                $this->update($fornecedor_id, $data);
             } else {
                 $data["data_cadastro"] = date("Y-m-d H:i:s");
                 $data["usuario_id"] = $this->usuario_id;
-                $cliente_id = $this->salvar($data);
+                $fornecedor_id = $this->salvar($data);
             }
 
-            return $cliente_id;
+            return $fornecedor_id;
 
         } else {
             throw new Exception("Preencha os campos corretamente!");

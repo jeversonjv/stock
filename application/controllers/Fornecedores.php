@@ -24,52 +24,53 @@ class Fornecedores extends CI_Controller {
         $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
     }
 
-    public function visualizar($cliente_id) {
-        $cliente = $this->clienteModel->get_by_id($cliente_id);
+    public function visualizar($fornecedor_id) {
+        $fornecedor = $this->fornecedorModel->get_by_id($fornecedor_id);
 
-        if($cliente->num_rows() === 0) redirect("/clientes");
+        if($fornecedor->num_rows() === 0) redirect("/fornecedores");
 
-        $this->data["cliente"] = $cliente->row();
+        $this->data["fornecedor"] = $fornecedor->row();
         $this->data["somente_visualizar"] = true;
         $this->template->setTitulo("Clientes - Visualizar");
-        $this->template->loadView("template/Layout", "Clientes/Formulario", $this->data);
+        $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
     }
 
-    public function editar($cliente_id) {
-        $cliente = $this->clienteModel->get_by_id($cliente_id);
+    public function editar($fornecedor_id) {
+        $fornecedor = $this->fornecedorModel->get_by_id($fornecedor_id);
 
-        if($cliente->num_rows() === 0) redirect("/clientes");
+        if($fornecedor->num_rows() === 0) redirect("/fornecedores");
 
-        $this->data["cliente"] = $cliente->row();
-        $this->data["cliente_id"] = $cliente_id;
+        $this->data["fornecedor"] = $fornecedor->row();
+        $this->data["fornecedor_id"] = $fornecedor_id;
         $this->template->setTitulo("Clientes - Editar");
-        $this->template->loadView("template/Layout", "Clientes/Formulario", $this->data);
+        $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
     }
 
-    public function excluir($cliente_id) {
-        $res = $this->clienteModel->delete($cliente_id);
+    public function excluir($fornecedor_id) {
+        xdebug_break();
+        $res = $this->fornecedorModel->delete($fornecedor_id);
 
         if($res) {
-            $this->session->set_flashdata("mensagemSucesso", "Cliente excluído Com Sucesso!");
+            $this->session->set_flashdata("mensagemSucesso", "Fornecedor excluído Com Sucesso!");
         } else {
-            $this->session->set_flashdata("mensagemErro", "Ocorreu um erro ao excluir o cliente!");
+            $this->session->set_flashdata("mensagemErro", "Ocorreu um erro ao excluir o fornecedor!");
         }
 
-        redirect("/clientes");
+        redirect("/fornecedores");
     }
 
     public function salvar() {
         try {
-            $data = carregarDadosPOST($this->input->post());
-            unset($data["cliente_id"]);
-            $cliente_id = $this->input->post("cliente_id");
-            $this->clienteModel->salvar_cliente($data, $cliente_id);
-            $this->session->set_flashdata("mensagemSucesso", "Cliente " . ($cliente_id ? "Editado" : "Criado") . " Com Sucesso!");
-            redirect("/clientes");
+            $data = carregarDadosPost($this->input->post());
+            unset($data["fornecedor_id"]);
+            $fornecedor_id = $this->input->post("fornecedor_id");
+            $this->fornecedorModel->salvar_fornecedor($data, $fornecedor_id);
+            $this->session->set_flashdata("mensagemSucesso", "Fornecedor " . ($fornecedor_id ? "Editado" : "Criado") . " Com Sucesso!");
+            redirect("/fornecedores");
         } catch(Exception $e) {
-            $this->session->set_flashdata("cliente", (object) $data);
+            $this->session->set_flashdata("fornecedor", (object) $data);
             $this->session->set_flashdata("mensagemErro", $e->getMessage());
-            redirect($cliente_id ? "/clientes/editar/{$cliente_id}" : "/clientes/adicionar");
+            redirect($fornecedor_id ? "/fornecedores/editar/{$fornecedor_id}" : "/fornecedores/adicionar");
         }
     }
 

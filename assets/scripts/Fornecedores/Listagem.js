@@ -1,7 +1,7 @@
 $(document).ready(() => {
 
     $(".btn-deletar").click((evt) => {
-        let cliente_id = $(evt.target).data("cliente_id");
+        let fornecedor_id = $(evt.target).data("fornecedor_id");
         Swal.fire({
             title: 'Tem certeza?',
             text: 'Não será possível recuperar o registro',
@@ -12,7 +12,7 @@ $(document).ready(() => {
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
-                window.location.href = `/fornecedores/excluir/${cliente_id}`;
+                window.location.href = `/fornecedores/excluir/${fornecedor_id}`;
             }
         })
 
