@@ -34,7 +34,7 @@
                         <th>E-mail</th>
                         <th>Celular</th>
                         <th>Telefone</th>
-                        <th>CPF</th>
+                        <th>Tipo de Pessoa</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
                         <th>Excluir</th>
@@ -46,7 +46,7 @@
                         <th>E-mail</th>
                         <th>Celular</th>
                         <th>Telefone</th>
-                        <th>CPF</th>
+                        <th>Tipo de Pessoa</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
                         <th>Excluir</th>

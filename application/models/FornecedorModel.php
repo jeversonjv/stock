@@ -9,7 +9,7 @@ class FornecedorModel extends CI_Model {
     public function __construct() {
         parent::__construct();
 
-        $this->tbl = "cliente";
+        $this->tbl = "fornecedor";
         $this->usuario_id = $this->session->userdata("usuario_id");
     }
 
