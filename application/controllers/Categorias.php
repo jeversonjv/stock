@@ -47,7 +47,6 @@ class Fornecedores extends CI_Controller {
     }
 
     public function excluir($fornecedor_id) {
-        xdebug_break();
         $res = $this->fornecedorModel->delete($fornecedor_id);
 
         if($res) {
