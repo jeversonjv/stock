@@ -1,6 +1,6 @@
 <?php
 
-class Fornecedores extends CI_Controller {
+class Categorias extends CI_Controller {
 
     private $data;
 
