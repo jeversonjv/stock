@@ -50,7 +50,7 @@ class Categorias extends CI_Controller {
         $res = $this->fornecedorModel->delete($fornecedor_id);
 
         if($res) {
-            $this->session->set_flashdata("mensagemSucesso", "Fornecedor excluído Com Sucesso!");
+            $this->session->set_flashdata("mensagemSucesso", "Categoria excluído Com Sucesso!");
         } else {
             $this->session->set_flashdata("mensagemErro", "Ocorreu um erro ao excluir o categoria!");
         }
@@ -64,7 +64,7 @@ class Categorias extends CI_Controller {
             unset($data["fornecedor_id"]);
             $fornecedor_id = $this->input->post("fornecedor_id");
             $this->fornecedorModel->salvar_fornecedor($data, $fornecedor_id);
-            $this->session->set_flashdata("mensagemSucesso", "Fornecedor " . ($fornecedor_id ? "Editado" : "Criado") . " Com Sucesso!");
+            $this->session->set_flashdata("mensagemSucesso", "Categoria " . ($fornecedor_id ? "Editado" : "Criado") . " Com Sucesso!");
             redirect("/fornecedores");
         } catch(Exception $e) {
             $this->session->set_flashdata("categoria", (object) $data);
