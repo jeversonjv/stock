@@ -31,7 +31,7 @@ class Fornecedores extends CI_Controller {
 
         $this->data["fornecedor"] = $fornecedor->row();
         $this->data["somente_visualizar"] = true;
-        $this->template->setTitulo("Clientes - Visualizar");
+        $this->template->setTitulo("Fornecedores - Visualizar");
         $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
     }
 
@@ -42,7 +42,7 @@ class Fornecedores extends CI_Controller {
 
         $this->data["fornecedor"] = $fornecedor->row();
         $this->data["fornecedor_id"] = $fornecedor_id;
-        $this->template->setTitulo("Clientes - Editar");
+        $this->template->setTitulo("Fornecedores - Editar");
         $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
     }
 

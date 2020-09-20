@@ -11,7 +11,7 @@ class Categorias extends CI_Controller {
     }
 
     public function index() {
-        $this->data["fornecedores"] = $this->fornecedorModel->get_all()->result();
+        $this->data["fornecedores"] = $this->categoriaModel->get_all()->result();
         $this->template->setTitulo("Categorias");
         $this->template->loadView("template/layout", "Categorias/Listagem", $this->data);
     }
@@ -25,7 +25,7 @@ class Categorias extends CI_Controller {
     }
 
     public function visualizar($categoria_id) {
-        $categoria = $this->fornecedorModel->get_by_id($categoria_id);
+        $categoria = $this->categoriaModel->get_by_id($categoria_id);
 
         if($categoria->num_rows() === 0) redirect("/categorias");
 
@@ -36,7 +36,7 @@ class Categorias extends CI_Controller {
     }
 
     public function editar($categoria_id) {
-        $categoria = $this->fornecedorModel->get_by_id($categoria_id);
+        $categoria = $this->categoriaModel->get_by_id($categoria_id);
 
         if($categoria->num_rows() === 0) redirect("/categorias");
 
@@ -47,7 +47,7 @@ class Categorias extends CI_Controller {
     }
 
     public function excluir($categoria_id) {
-        $res = $this->fornecedorModel->delete($categoria_id);
+        $res = $this->categoriaModel->delete($categoria_id);
 
         if($res) {
             $this->session->set_flashdata("mensagemSucesso", "Categoria excluído Com Sucesso!");
@@ -63,7 +63,7 @@ class Categorias extends CI_Controller {
             $data = carregarDadosPost($this->input->post());
             unset($data["categoria_id"]);
             $categoria_id = $this->input->post("categoria_id");
-            $this->fornecedorModel->salvar_fornecedor($data, $categoria_id);
+            $this->categoriaModel->salvar_fornecedor($data, $categoria_id);
             $this->session->set_flashdata("mensagemSucesso", "Categoria " . ($categoria_id ? "Editado" : "Criado") . " Com Sucesso!");
             redirect("/categorias");
         } catch(Exception $e) {
