@@ -7,47 +7,47 @@ class Categorias extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model("fornecedorModel", "", TRUE);
+        $this->load->model("categoriaModel", "", TRUE);
     }
 
     public function index() {
         $this->data["fornecedores"] = $this->fornecedorModel->get_all()->result();
-        $this->template->setTitulo("Fornecedores");
-        $this->template->loadView("template/layout", "Fornecedores/Listagem", $this->data);
+        $this->template->setTitulo("Categorias");
+        $this->template->loadView("template/layout", "Categorias/Listagem", $this->data);
     }
 
     public function adicionar() {
         if($this->session->flashdata("categoria")) {
             $this->data["categoria"] = $this->session->flashdata("categoria");
         }
-        $this->template->setTitulo("Fornecedores - Adicionar");
-        $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
+        $this->template->setTitulo("Categorias - Adicionar");
+        $this->template->loadView("template/Layout", "Categorias/Formulario", $this->data);
     }
 
-    public function visualizar($fornecedor_id) {
-        $categoria = $this->fornecedorModel->get_by_id($fornecedor_id);
+    public function visualizar($categoria_id) {
+        $categoria = $this->fornecedorModel->get_by_id($categoria_id);
 
-        if($categoria->num_rows() === 0) redirect("/fornecedores");
+        if($categoria->num_rows() === 0) redirect("/categorias");
 
         $this->data["categoria"] = $categoria->row();
         $this->data["somente_visualizar"] = true;
-        $this->template->setTitulo("Clientes - Visualizar");
-        $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
+        $this->template->setTitulo("Categorias - Visualizar");
+        $this->template->loadView("template/Layout", "Categorias/Formulario", $this->data);
     }
 
-    public function editar($fornecedor_id) {
-        $categoria = $this->fornecedorModel->get_by_id($fornecedor_id);
+    public function editar($categoria_id) {
+        $categoria = $this->fornecedorModel->get_by_id($categoria_id);
 
-        if($categoria->num_rows() === 0) redirect("/fornecedores");
+        if($categoria->num_rows() === 0) redirect("/categorias");
 
         $this->data["categoria"] = $categoria->row();
-        $this->data["fornecedor_id"] = $fornecedor_id;
-        $this->template->setTitulo("Clientes - Editar");
-        $this->template->loadView("template/Layout", "Fornecedores/Formulario", $this->data);
+        $this->data["categoria_id"] = $categoria_id;
+        $this->template->setTitulo("Categorias - Editar");
+        $this->template->loadView("template/Layout", "Categorias/Formulario", $this->data);
     }
 
-    public function excluir($fornecedor_id) {
-        $res = $this->fornecedorModel->delete($fornecedor_id);
+    public function excluir($categoria_id) {
+        $res = $this->fornecedorModel->delete($categoria_id);
 
         if($res) {
             $this->session->set_flashdata("mensagemSucesso", "Categoria excluído Com Sucesso!");
@@ -55,21 +55,21 @@ class Categorias extends CI_Controller {
             $this->session->set_flashdata("mensagemErro", "Ocorreu um erro ao excluir o categoria!");
         }
 
-        redirect("/fornecedores");
+        redirect("/categorias");
     }
 
     public function salvar() {
         try {
             $data = carregarDadosPost($this->input->post());
-            unset($data["fornecedor_id"]);
-            $fornecedor_id = $this->input->post("fornecedor_id");
-            $this->fornecedorModel->salvar_fornecedor($data, $fornecedor_id);
-            $this->session->set_flashdata("mensagemSucesso", "Categoria " . ($fornecedor_id ? "Editado" : "Criado") . " Com Sucesso!");
-            redirect("/fornecedores");
+            unset($data["categoria_id"]);
+            $categoria_id = $this->input->post("categoria_id");
+            $this->fornecedorModel->salvar_fornecedor($data, $categoria_id);
+            $this->session->set_flashdata("mensagemSucesso", "Categoria " . ($categoria_id ? "Editado" : "Criado") . " Com Sucesso!");
+            redirect("/categorias");
         } catch(Exception $e) {
             $this->session->set_flashdata("categoria", (object) $data);
             $this->session->set_flashdata("mensagemErro", $e->getMessage());
-            redirect($fornecedor_id ? "/fornecedores/editar/{$fornecedor_id}" : "/fornecedores/adicionar");
+            redirect($categoria_id ? "/categorias/editar/{$categoria_id}" : "/categorias/adicionar");
         }
     }
 
