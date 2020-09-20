@@ -98,7 +98,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gerenciamento</h6>
                         <a class="collapse-item" href="login.html">Cadastro</a>
-                        <a class="collapse-item" href="login.html">Categorias</a>
+                        <a class="collapse-item" href="/categorias">Categorias</a>
                     </div>
                 </div>
             </li>
