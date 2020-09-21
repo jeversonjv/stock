@@ -8,6 +8,7 @@ class Produtos extends CI_Controller {
         parent::__construct();
 
         $this->load->model("produtoModel", "", TRUE);
+        $this->load->model("categoriaModel", "", TRUE);
     }
 
     public function index() {
@@ -20,6 +21,8 @@ class Produtos extends CI_Controller {
         if($this->session->flashdata("produto")) {
             $this->data["produto"] = $this->session->flashdata("produto");
         }
+
+        $this->data["categorias"] = $this->categoriaModel->get_all()->result();
         $this->template->setTitulo("Produtos - Adicionar");
         $this->template->loadView("template/Layout", "Produtos/Formulario", $this->data);
     }
@@ -40,6 +43,7 @@ class Produtos extends CI_Controller {
 
         if($produto->num_rows() === 0) redirect("/produtos");
 
+        $this->data["categorias"] = $this->categoriaModel->get_all()->result();
         $this->data["produto"] = $produto->row();
         $this->data["produto_id"] = $produto_id;
         $this->template->setTitulo("Produtos - Editar");
