@@ -26,6 +26,9 @@
     <!-- Custom css -->
     <link rel="stylesheet" href="/assets/styles/styles.css">
 
+    <!-- Chosen CSS -->
+    <link rel="stylesheet" href="/assets/styles/component-chosen.min.css">
+
 </head>
 
 <body id="page-top">
@@ -254,6 +257,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="/assets/template/vendor/jquery/jquery.min.js"></script>
     <script src="/assets/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="/assets/template/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -283,6 +287,9 @@
 
     <!-- sweet alert 2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- Chosen Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
 
     <?php if(count($scripts) > 0) { ?>
         <?php foreach($scripts as $script) { ?>
