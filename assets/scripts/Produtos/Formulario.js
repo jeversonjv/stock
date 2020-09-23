@@ -20,7 +20,7 @@ $(document).ready(() => {
 
         if(produto_id == 0) {
             Swal.fire({
-                title: 'Deseja inserir produto no contas a pagar?',
+                title: 'Deseja inserir o produto no contas a pagar?',
                 text: 'O produto será inserido no controle de contas a pagar ',
                 icon: 'warning',
                 showCancelButton: true,
