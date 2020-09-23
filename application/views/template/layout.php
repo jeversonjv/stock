@@ -291,6 +291,8 @@
     <!-- Chosen Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
 
+    <script src="/assets/scripts/geral.js"></script>
+
     <?php if(count($scripts) > 0) { ?>
         <?php foreach($scripts as $script) { ?>
             <script src="/<?= $script ?>?v=<?= VERSAO_SISTEMA ?>"></script>

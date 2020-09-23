@@ -18,7 +18,4 @@ $(document).ready(() => {
     });
 
     $("#salvar").click(() => $("#formulario").submit());
-    $(".form-control-chosen").chosen({
-        no_results_text: "Nenhum resultado encontrado: "
-    });
 });

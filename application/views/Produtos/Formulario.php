@@ -50,6 +50,48 @@
                         <?php } ?>
                     </select>
                 </div>
+                <div class="col-md-3 col-xs-12">
+                    <div class="form-group">
+                        <label> Peso Líquido </label>
+                        <input type="number" name="peso_liquido" id="peso_liquido" class="form-control" value="<?=!empty($produto->peso_liquido) ? $produto->peso_liquido : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <div class="form-group">
+                        <label> Peso Bruto </label>
+                        <input type="number" name="peso_bruto" id="peso_bruto" class="form-control" value="<?=!empty($produto->peso_bruto) ? $produto->peso_bruto : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <div class="form-group">
+                        <label> Preço de Venda* </label>
+                        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="preco_venda" id="preco_venda" class="form-control" value="<?=!empty($produto->preco_venda) ? $produto->preco_venda : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <div class="form-group">
+                        <label> Preço de Custo* </label>
+                        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="preco_custo" id="preco_custo" class="form-control" value="<?=!empty($produto->preco_custo) ? $produto->preco_custo : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <div class="form-group">
+                        <label> Estoque* </label>
+                        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="estoque" id="estoque" class="form-control" value="<?=!empty($produto->estoque) ? $produto->estoque : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label> Descrição </label>
+                        <textarea name="descricao" id="descricao" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label> Observação </label>
+                        <textarea name="observacao" id="observacao" class="form-control"></textarea>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
