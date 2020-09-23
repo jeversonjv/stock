@@ -15,5 +15,23 @@ $(document).ready(() => {
         }
     });
 
-    $("#salvar").click(() => $("#formulario").submit());
+    $("#salvar").click(() =>  {
+        Swal.fire({
+            title: 'Deseja inserir produto no contas a pagar?',
+            text: 'O produto será inserido no controle de contas a pagar ',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, pode inserir!',
+            cancelButtonText: 'Não quero!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                $("#incluir_contas_a_pagar").val(1);
+            } else {
+                $("#incluir_contas_a_pagar").val(0);
+            }
+
+            $("#formulario").submit();
+        });
+    });
 });

@@ -22,6 +22,7 @@
     <div class="card-body">
         <form id="formulario" method="post" action="/produtos/salvar">
             <input type="hidden" name="produto_id" value="<?=!empty($produto_id) ? $produto_id : 0?>" />
+            <input type="hidden" id="incluir_contas_a_pagar" name="incluir_contas_a_pagar" />
 
             <h6 class="align-middle m-0 font-weight-bold">Dados Básicos</h6>
             <hr/>

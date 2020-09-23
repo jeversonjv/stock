@@ -295,7 +295,7 @@
 
     <?php if(count($scripts) > 0) { ?>
         <?php foreach($scripts as $script) { ?>
-            <script src="/<?= $script ?>?v=<?= VERSAO_SISTEMA ?>"></script>
+            <script src="/<?= $script ?>?v=<?= uniqid() ?>"></script>
         <?php } ?>
     <?php } ?>
 
