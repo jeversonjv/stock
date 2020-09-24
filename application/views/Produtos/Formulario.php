@@ -38,7 +38,7 @@
                     <select name="fornecedor_id" id="fornecedor_id" class="form-control form-control-chosen" <?=isset($somente_visualizar) ? "disabled" : ""?>>
                         <option value="" <?=!empty($produto->fornecedor_id) ? "" : "selected"?>>Selecione uma opção</option>
                         <?php foreach($fornecedores as $fornecedor) { ?>
-                            <option value="<?=$fornecedor->fornecedor_id?>" <?=!empty($produto->fornecedor_id) && $fornecedor->fornecedor_id ? "selected" : ""?>> <?=$fornecedor->nome?> </option>
+                            <option value="<?=$fornecedor->fornecedor_id?>" <?=!empty($produto->fornecedor_id) && $fornecedor->fornecedor_id == $produto->fornecedor_id ? "selected" : ""?>> <?=$fornecedor->nome?> </option>
                         <?php } ?>
                     </select>
                 </div>
@@ -47,7 +47,7 @@
                     <select name="categoria_id" id="categoria_id" class="form-control form-control-chosen" <?=isset($somente_visualizar) ? "disabled" : ""?>>
                         <option value="" <?=!empty($produto->categoria_id) ? "" : "selected"?>>Selecione uma opção</option>
                         <?php foreach($categorias as $categoria) { ?>
-                            <option value="<?=$categoria->categoria_id?>" <?=!empty($produto->categoria_id) && $categoria->fornecedor_id ? "selected" : ""?>> <?=$categoria->nome?> </option>
+                            <option value="<?=$categoria->categoria_id?>" <?=!empty($produto->categoria_id) && $produto->categoria_id == $categoria->categoria_id ? "selected" : ""?>> <?=$categoria->nome?> </option>
                         <?php } ?>
                     </select>
                 </div>
@@ -84,13 +84,13 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label> Descrição </label>
-                        <textarea name="descricao" id="descricao" class="form-control"></textarea>
+                        <textarea name="descricao" id="descricao" class="form-control" <?=isset($somente_visualizar) ? "disabled" : ""?>><?=!empty($produto->descricao) ? $produto->descricao : ""?></textarea>
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
                         <label> Observação </label>
-                        <textarea name="observacao" id="observacao" class="form-control"></textarea>
+                        <textarea name="observacao" id="observacao" class="form-control" <?=isset($somente_visualizar) ? "disabled" : ""?>><?=!empty($produto->observacao) ? $produto->observacao : ""?></textarea>
                     </div>
                 </div>
             </div>

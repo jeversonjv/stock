@@ -54,8 +54,8 @@
                     <?php foreach($produtos as $produto) { ?> 
                         <tr>
                             <td> <?= $produto->nome ?> </td>
-                            <td> <?= $produto->fornecedor_nome ?? "--" ?> </td>
                             <td> <?= $produto->categoria_nome ?? "--" ?> </td>
+                            <td> <?= $produto->fornecedor_nome ?? "--" ?> </td>
                             <td> <?= $produto->estoque ?> </td>
                             <td> 
                                 <a class="btn btn-primary text-white" href="/produtos/visualizar/<?= $produto->produto_id ?>"> <i class="fas fa-eye"></i> </a>

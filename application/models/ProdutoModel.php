@@ -15,7 +15,9 @@ class ProdutoModel extends CI_Model {
 
     public function get_all() {
         $this->db->select("produto.*");
+        $this->db->select("fornecedor.fornecedor_id");
         $this->db->select("fornecedor.nome as fornecedor_nome");
+        $this->db->select("categoria.categoria_id");
         $this->db->select("categoria.nome as categoria_nome");
 
         $this->db->join("fornecedor", "fornecedor.fornecedor_id = produto.fornecedor_id", "left");

@@ -35,6 +35,8 @@ class Produtos extends CI_Controller {
         if($produto->num_rows() === 0) redirect("/produtos");
 
         $this->data["produto"] = $produto->row();
+        $this->data["categorias"] = $this->categoriaModel->get_all()->result();
+        $this->data["fornecedores"] = $this->fornecedorModel->get_all()->result();
         $this->data["somente_visualizar"] = true;
         $this->template->setTitulo("Produtos - Visualizar");
         $this->template->loadView("template/Layout", "Produtos/Formulario", $this->data);
@@ -69,8 +71,9 @@ class Produtos extends CI_Controller {
         try {
             $data = carregarDadosPost($this->input->post());
             unset($data["produto_id"]);
+            unset($data["incluir_contas_a_pagar"]);
             $produto_id = $this->input->post("produto_id");
-            $this->produtoModel->salvar_categoria($data, $produto_id);
+            $this->produtoModel->salvar_produto($data, $produto_id);
             $this->session->set_flashdata("mensagemSucesso", "Produto " . ($produto_id ? "Editado" : "Criado") . " Com Sucesso!");
             redirect("/produtos");
         } catch(Exception $e) {
