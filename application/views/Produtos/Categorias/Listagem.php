@@ -31,16 +31,16 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Visualizar</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Nome</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Visualizar</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </tfoot>
                 <tbody>
