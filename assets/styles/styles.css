@@ -36,3 +36,8 @@ input.error, select.error {
     font-size: 1rem !important;
     width: 100%;
 }
+
+/********************************************* Classes úteis *********************************************/
+.hide {
+    display: none;
+}
