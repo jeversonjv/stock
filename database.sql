@@ -76,10 +76,12 @@ create table fornecedor (
 create table venda (
 	venda_id int not null auto_increment,
     cliente_id int null,
+    usuario_id int null,
     descricao varchar(255) null,
     data_venda datetime null,
     primary key(venda_id),
-    index idx_cliente_id (cliente_id)
+    index idx_cliente_id (cliente_id),
+    index idx_usuario_id (usuario_id)
 );
 
 create table venda_produto (
