@@ -53,13 +53,13 @@
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
-                        <label> Peso Líquido </label>
+                        <label> Peso Líquido (Kg) </label>
                         <input type="number" name="peso_liquido" id="peso_liquido" class="form-control" value="<?=!empty($produto->peso_liquido) ? $produto->peso_liquido : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
-                        <label> Peso Bruto </label>
+                        <label> Peso Bruto (kg) </label>
                         <input type="number" name="peso_bruto" id="peso_bruto" class="form-control" value="<?=!empty($produto->peso_bruto) ? $produto->peso_bruto : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
                     </div>
                 </div>
