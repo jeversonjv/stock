@@ -22,19 +22,18 @@
     <?php } ?>
 
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <h6 class="align-middle m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
-        <a class="btn btn-primary text-white" href="/clientes/adicionar"> Adicionar </a>
+        <h6 class="align-middle m-0 font-weight-bold text-primary">Listagem de Vendas</h6>
+        <a class="btn btn-primary text-white" href="/vendas/adicionar"> Adicionar </a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Celular</th>
-                        <th>Telefone</th>
-                        <th>CPF</th>
+                        <th>Cliente</th>
+                        <th>Qtd. Produtos</th>
+                        <th>Data da Venda</th>
+                        <th>Valor da Venda</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
                         <th>Excluir</th>
@@ -42,11 +41,10 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Celular</th>
-                        <th>Telefone</th>
-                        <th>CPF</th>
+                        <th>Cliente</th>
+                        <th>Qtd. Produtos</th>
+                        <th>Data da Venda</th>
+                        <th>Valor da Venda</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
                         <th>Excluir</th>
@@ -57,13 +55,13 @@
                         <tr>
                             <td>  </td>
                             <td> 
-                                <a class="btn btn-primary text-white" href="/clientes/visualizar/<?= "" ?>"> <i class="fas fa-eye"></i> </a>
+                                <a class="btn btn-primary text-white" href="/clientes/visualizar/<?= $venda->venda_id ?>"> <i class="fas fa-eye"></i> </a>
                             </td>
                             <td> 
-                                <a class="btn btn-warning text-white" href="/clientes/editar/<?= "" ?>"> <i class="fas fa-edit"></i> </a>
+                                <a class="btn btn-warning text-white" href="/clientes/editar/<?= $venda->venda_id ?>"> <i class="fas fa-edit"></i> </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger text-white btn-deletar" data-cliente_id="<?= "" ?>" > <i class="fas fa-trash"></i></i> </a>
+                                <a class="btn btn-danger text-white btn-deletar" data-cliente_id="<?= $venda->venda_id ?>" > <i class="fas fa-trash"></i></i> </a>
                             </td>
                         </tr>
                     <?php } ?>
