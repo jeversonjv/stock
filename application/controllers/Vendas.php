@@ -8,10 +8,12 @@ class Vendas extends CI_Controller {
         parent::__construct();
 
         $this->load->model("vendaModel", "", TRUE);
+        $this->load->model("clienteModel", "", TRUE);
     }
 
     public function index() {
         $this->data["vendas"] = $this->vendaModel->get_all()->result();
+
         $this->template->setTitulo("Vendas");
         $this->template->loadView("template/layout", "Vendas/Listagem", $this->data);
     }
@@ -20,6 +22,8 @@ class Vendas extends CI_Controller {
         if($this->session->flashdata("venda")) {
             $this->data["venda"] = $this->session->flashdata("venda");
         }
+
+        $this->data["clientes"] = $this->clienteModel->get_all()->result();
         $this->template->setTitulo("Vendas - Adicionar");
         $this->template->loadView("template/Layout", "Vendas/Formulario", $this->data);
     }
@@ -29,6 +33,7 @@ class Vendas extends CI_Controller {
 
         if($venda->num_rows() === 0) redirect("/vendas");
 
+        $this->data["clientes"] = $this->clienteModel->get_all()->result();
         $this->data["venda"] = $venda->row();
         $this->data["somente_visualizar"] = true;
         $this->template->setTitulo("Vendas - Visualizar");
@@ -40,6 +45,7 @@ class Vendas extends CI_Controller {
 
         if($venda->num_rows() === 0) redirect("/vendas");
 
+        $this->data["clientes"] = $this->clienteModel->get_all()->result();
         $this->data["venda"] = $venda->row();
         $this->data["venda_id"] = $venda_id;
         $this->template->setTitulo("Vendas - Editar");
