@@ -44,6 +44,7 @@ $(document).ready(() => {
 
     $("#add_produto").click(() => {
         let produto = {
+            produto_id: $("#produto_id").val(),
             nome: $("#produto_id :selected").text(),
             quantidade: $("#quantidade").val(),
             valor_unitario: $("#valor_unitario").val(),
@@ -69,7 +70,7 @@ $(document).ready(() => {
                         <td> ${produto.quantidade} </td>
                         <td> R$ ${produto.valor_unitario} </td>
                         <td> R$ ${produto.valor_total} </td>
-                        <td> <a class="btn btn-danger text-white btn-deletar"> <i class="fas fa-trash"></i></i> </a> </td>
+                        <td> <a class="btn btn-danger text-white btn-deletar" data-produto_id="${produto.produto_id}"> <i class="fas fa-trash"></i></i> </a> </td>
                     </tr>
                 `);
 
