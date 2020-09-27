@@ -43,9 +43,6 @@ $(document).ready(() => {
 
 
     $("#add_produto").click(() => {
-        $("#modal_produto").modal("hide");
-        resetarModal();
-
         let produto = {
             nome: $("#produto_id :selected").text(),
             quantidade: $("#quantidade").val(),
@@ -55,6 +52,9 @@ $(document).ready(() => {
 
         produtos.push(produto);
         listarProdutos();
+
+        $("#modal_produto").modal("hide");
+        resetarModal();
     });
 
     const listarProdutos = () => {
