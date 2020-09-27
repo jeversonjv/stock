@@ -115,7 +115,7 @@
 					</div>
 					<div class="col-md-6 mt-2">
 						<label> Quantidade </label>
-						<input type="number" min="1" name="quantidade" id="quantidade" class="form-control" value="1"/>
+						<input type="number" min="1" name="quantidade" id="quantidade" class="form-control" />
 					</div>
 					<div class="col-md-6 mt-2">
 						<label> Valor Total </label>
