@@ -108,4 +108,20 @@ $(document).ready(() => {
 
         }, "JSON");
     }
+
+    $("#formulario_login input").keyup((evt) => {
+        console.log("evt", evt)
+        let code = evt.keyCode || evt.which;
+        if(code == 13) {
+            login();
+        }
+    });
+
+    $("#formulario_cadastro input").keyup((evt) => {
+        console.log("evt", evt)
+        let code = evt.keyCode || evt.which;
+        if(code == 13) {
+            cadastrar();
+        }
+    });
 });
