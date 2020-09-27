@@ -13,8 +13,15 @@ $(document).ready(() => {
     
                 if(retorno.produto.estoque > 0) {
                     $("#box_info_produto").removeClass("hide");
+
+                    let desconto_estoque = 0;
+                    produtos.forEach(produto => {
+                        if(produto.produto_id == retorno.produto.produto_id) {
+                            desconto_estoque += produto.quantidade;
+                        }
+                    });
     
-                    $("#estoque").val(retorno.produto.estoque);
+                    $("#estoque").val(retorno.produto.estoque - desconto_estoque);
                     $("#valor_unitario").val(retorno.produto.preco_venda);
                     $("#quantidade").attr({
                         max: retorno.produto.estoque
