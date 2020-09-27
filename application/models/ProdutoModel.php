@@ -13,7 +13,7 @@ class ProdutoModel extends CI_Model {
         $this->usuario_id = $this->session->userdata("usuario_id");
     }
 
-    public function get_all() {
+    public function get_all($somente_com_estqoue = FALSE) {
         $this->db->select("produto.*");
         $this->db->select("fornecedor.fornecedor_id");
         $this->db->select("fornecedor.nome as fornecedor_nome");
@@ -22,6 +22,10 @@ class ProdutoModel extends CI_Model {
 
         $this->db->join("fornecedor", "fornecedor.fornecedor_id = produto.fornecedor_id", "left");
         $this->db->join("categoria", "categoria.categoria_id = produto.categoria_id", "left");
+
+        if($somente_com_estqoue) {
+            $this->db->where("produto.estoque > 0");
+        }
 
         $this->db->where("produto.usuario_id", $this->usuario_id);
         return $this->db->get($this->tbl);

@@ -39,5 +39,5 @@ input.error, select.error {
 
 /********************************************* Classes úteis *********************************************/
 .hide {
-    display: none;
+    display: none !important;
 }
