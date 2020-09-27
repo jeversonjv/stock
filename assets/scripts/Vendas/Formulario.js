@@ -50,15 +50,34 @@ $(document).ready(() => {
 
 
     $("#add_produto").click(() => {
-        let produto = {
-            produto_id: $("#produto_id").val(),
-            nome: $("#produto_id :selected").text(),
-            quantidade: $("#quantidade").val(),
-            valor_unitario: $("#valor_unitario").val(),
-            valor_total: $("#valor_total").val()
-        };
+        let produto_id = $("#produto_id").val();
+        let nome = $("#produto_id :selected").text();
+        let quantidade = $("#quantidade").val();
+        let valor_unitario = $("#valor_unitario").val();
+        let valor_total = $("#valor_total").val();
+        let achou_produto = false;
 
-        produtos.push(produto);
+        produtos.forEach(produto => {
+            if(produto.produto_id == produto_id) {
+                produto.quantidade = parseInt(produto.quantidade) + parseInt(quantidade);
+                produto.valor_total = parseFloat(produto.valor_total) + parseFloat(valor_total);
+
+                achou_produto = true;
+            }
+        });
+
+        if(!achou_produto) {
+            let produto = {
+                produto_id,
+                nome,
+                quantidade,
+                valor_unitario,
+                valor_total
+            };
+    
+            produtos.push(produto);
+        }
+
         listarProdutos();
 
         $("#modal_produto").modal("hide");
