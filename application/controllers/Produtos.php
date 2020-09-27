@@ -83,4 +83,12 @@ class Produtos extends CI_Controller {
         }
     }
 
+    public function get_info_produto($produto_id){
+        $produto = $this->produtoModel->get_by_id($produto_id)->row();
+
+        $retorno = [ "produto" => $produto ];
+
+        echo json_encode($retorno);
+    }
+
 }

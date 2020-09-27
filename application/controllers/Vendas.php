@@ -9,6 +9,7 @@ class Vendas extends CI_Controller {
 
         $this->load->model("vendaModel", "", TRUE);
         $this->load->model("clienteModel", "", TRUE);
+        $this->load->model("produtoModel", "", TRUE);
     }
 
     public function index() {
@@ -24,6 +25,8 @@ class Vendas extends CI_Controller {
         }
 
         $this->data["clientes"] = $this->clienteModel->get_all()->result();
+        $this->data["produtos"] = $this->produtoModel->get_all(true)->result();
+        
         $this->template->setTitulo("Vendas - Adicionar");
         $this->template->loadView("template/Layout", "Vendas/Formulario", $this->data);
     }
@@ -46,6 +49,8 @@ class Vendas extends CI_Controller {
         if($venda->num_rows() === 0) redirect("/vendas");
 
         $this->data["clientes"] = $this->clienteModel->get_all()->result();
+        $this->data["produtos"] = $this->produtoModel->get_all(true)->result();
+
         $this->data["venda"] = $venda->row();
         $this->data["venda_id"] = $venda_id;
         $this->template->setTitulo("Vendas - Editar");
