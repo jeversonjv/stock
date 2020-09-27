@@ -1,4 +1,4 @@
-<div class="card shadow mb-4 <?=!empty($venda_id) ? 'hide' : ''?>" id="div_principal">
+<div class="card shadow mb-4" id="div_principal">
 
 	<?php if ($this->session->flashdata("mensagemErro")) {?>
 	<div class="col-lg-12 mb-2 mt-2 text-center">
@@ -51,14 +51,14 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center mt-2">
 				<h6 class="align-middle font-weight-bold">Produtos da Venda</h6>
-				<a class="btn btn-primary text-white" data-toggle="modal" data-target="#modal_produto"> Adicionar
+				<a class="btn btn-primary text-white" id="abrir_modal_add_produto" data-toggle="modal" data-target="#modal_produto"> Adicionar
 					Produto </a>
 			</div>
 
 			<div class="row mt-2">
 				<div class="col-md-12 col-xs-12">
 					<table class="table table-bordered table-striped" id="tabela_produtos">
-						<!-- <thead>
+						<thead>
                             <tr>
                                 <th> Nome </th>
                                 <th> Quantidade </th>
@@ -68,32 +68,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td> PC Gamer </td>
-                                <td> 2 </td>
-                                <td> R$ 3.500,00 </td>
-                                <td> R$ 7.000,00 </td>
-                                <td> <a class="btn btn-danger text-white btn-deletar"> <i class="fas fa-trash"></i></i> </a> </td>
-                            </tr>
-                            <tr>
-                                <td colspan="1"> <strong> Total </strong> </td>
-                                <td colspan="4"> <strong> R$ 7.000,00 </strong> </td>
-                            </tr> -->
-
-						<tr>
-							<td class="text-center" colspan="5"> Sem Produtos Cadastrados </td>
-						</tr>
+							<tr>
+                    			<td class="text-center" colspan="5"> Sem Produtos Cadastrados </td>
+                			</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</form>
 	</div>
-</div>
-
-
-<div class="card shadow mb-4 <?=!empty($venda_id) ? '' : 'hide'?>">
-	<img src="/assets/images/loading.svg" />
 </div>
 
 <div class="modal fade" id="modal_produto" tabindex="-1" role="dialog" aria-labelledby="modal_produto"
@@ -131,7 +114,7 @@
 						<input type="text" name="valor_unitario" id="valor_unitario" class="form-control" readonly/>
 					</div>
 					<div class="col-md-6 mt-2">
-						<label> Qauntidade </label>
+						<label> Quantidade </label>
 						<input type="number" min="1" name="quantidade" id="quantidade" class="form-control" value="1"/>
 					</div>
 					<div class="col-md-6 mt-2">
@@ -144,7 +127,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">Adicionar</button>
+				<button type="button" id="add_produto" class="btn btn-primary">Adicionar</button>
 			</div>
 		</div>
 	</div>
