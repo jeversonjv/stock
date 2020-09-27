@@ -40,7 +40,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Crie sua conta gratuitamente!</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" id="formulario_cadastro">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="nome" aria-describedby="emailHelp" placeholder="Nome">
                     </div>
