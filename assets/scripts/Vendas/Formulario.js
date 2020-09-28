@@ -118,6 +118,12 @@ $(document).ready(() => {
         }
     }
 
+    $(document).on("click", "a.btn-deletar", (evt) => {
+        let produto_id = $(evt.target).data("produto_id");
+        produtos = produtos.filter(produto => produto.produto_id != produto_id);
+        listarProdutos();
+    });
+
     $("#abrir_modal_add_produto").click(() => resetarModal());
 
     const resetarModal = () => {
