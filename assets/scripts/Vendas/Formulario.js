@@ -124,6 +124,19 @@ $(document).ready(() => {
         listarProdutos();
     });
 
+    $("#salvar").click(() => {
+        if(!$("#nome").val()) {
+            toastr.error("Nome é obrigatório!");
+            return;
+        }
+        if(produtos.length == 0) {
+            toastr.error("Adicione pelo menos um produto!");
+            return;
+        }
+
+
+    });
+
     $("#abrir_modal_add_produto").click(() => resetarModal());
 
     const resetarModal = () => {
@@ -132,6 +145,5 @@ $(document).ready(() => {
         $("#quantidade").val(1);
         $("#produto_id").val(0).trigger("chosen:updated");
     }
-    
-    $("#salvar").click(() => $("#formulario").submit());
+
 });

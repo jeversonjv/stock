@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="card-body">
-		<form id="formulario" method="post" action="/vendas/salvar">
+		<form id="formulario" method="post">
 			<input type="hidden" id="venda_id" name="venda_id" value="<?=!empty($venda_id) ? $venda_id : 0?>" />
 
 			<h6 class="align-middle m-0 font-weight-bold">Dados Básicos</h6>
