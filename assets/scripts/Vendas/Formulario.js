@@ -134,7 +134,10 @@ $(document).ready(() => {
             return;
         }
 
+        let url = "/vendas/salvar";
+        $.post(url, {}, (retorno) => {
 
+        }, "JSON");
     });
 
     $("#abrir_modal_add_produto").click(() => resetarModal());
