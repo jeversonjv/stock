@@ -51,6 +51,12 @@ $(document).ready(() => {
 
     $("#add_produto").click(() => {
         let produto_id = $("#produto_id").val();
+
+        if(produto_id == 0) {
+            toastr.error("Selecione um produto.");
+            return;
+        }
+
         let nome = $("#produto_id :selected").text();
         let quantidade = $("#quantidade").val();
         let valor_unitario = $("#valor_unitario").val();
@@ -96,7 +102,7 @@ $(document).ready(() => {
                         <td> ${produto.quantidade} </td>
                         <td> R$ ${produto.valor_unitario} </td>
                         <td> R$ ${produto.valor_total} </td>
-                        <td> <a class="btn btn-danger text-white btn-deletar" data-produto_id="${produto.produto_id}"> <i class="fas fa-trash"></i></i> </a> </td>
+                        <td> <a class="btn btn-danger text-white btn-deletar" data-produto_id="${produto.produto_id}"> <i class="fas fa-trash icone_deletar"></i></i> </a> </td>
                     </tr>
                 `);
 
@@ -120,9 +126,19 @@ $(document).ready(() => {
 
     $(document).on("click", "a.btn-deletar", (evt) => {
         let produto_id = $(evt.target).data("produto_id");
-        produtos = produtos.filter(produto => produto.produto_id != produto_id);
+        removerProdutoPeloId(produto_id);
         listarProdutos();
     });
+
+    $(document).on("click", "i.icone_deletar", (evt) => {
+        let produto_id = $(evt.target).parent().data("produto_id");
+        removerProdutoPeloId(produto_id);
+        listarProdutos();
+    });
+
+    const removerProdutoPeloId = (produto_id) => {
+        produtos = produtos.filter(produto => produto.produto_id != produto_id);
+    }
 
     $("#salvar").click(() => {
         if(!$("#nome").val()) {
@@ -147,6 +163,8 @@ $(document).ready(() => {
         $("#box_info_produto").addClass("hide");
         $("#quantidade").val(1);
         $("#produto_id").val(0).trigger("chosen:updated");
+        $("#valor_unitario").val("");
+        $("#valor_total").val("");
     }
 
 });
