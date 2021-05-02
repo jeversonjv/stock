@@ -51,7 +51,7 @@ class VendaModel extends CI_Model
         $this->db->join("cliente", "cliente.cliente_id = venda.cliente_id", "LEFT");
     }
 
-    private function salvar($data)
+    private function save($data)
     {
         $this->db->insert($this->tbl, $data);
         return $this->db->insert_id();
@@ -131,7 +131,7 @@ class VendaModel extends CI_Model
             } else {
                 $data["data_venda"] = date("Y-m-d H:i:s");
                 $data["usuario_id"] = $this->usuario_id;
-                $venda_id = $this->salvar($data);
+                $venda_id = $this->save($data);
             }
 
             $this->salvar_produtos($venda_id, $produtos);
