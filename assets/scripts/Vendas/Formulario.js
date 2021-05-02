@@ -141,18 +141,23 @@ $(document).ready(() => {
     }
 
     $("#salvar").click(() => {
-        if(!$("#nome").val()) {
-            toastr.error("Nome é obrigatório!");
-            return;
-        }
         if(produtos.length == 0) {
             toastr.error("Adicione pelo menos um produto!");
             return;
         }
+        
+        const venda_id = $("#venda_id").val();
+        const cliente_id = $("#cliente_id").val();
+        const descricao = $("#descricao").val();
 
         let url = "/vendas/salvar";
-        $.post(url, {}, (retorno) => {
-
+        $.post(url, {
+            venda_id,
+            cliente_id,
+            descricao,
+            produtos
+        }, (retorno) => {
+            console.log("🚀 ~ file: Formulario.js ~ line 156 ~ $ ~ retorno", retorno);
         }, "JSON");
     });
 
