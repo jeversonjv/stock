@@ -29,7 +29,7 @@
 			<hr />
 			<div class="row">
 				<div class="col-md-3 col-xs-12">
-					<label> Cliente* </label>
+					<label> Cliente </label>
 					<select name="cliente_id" id="cliente_id" class="form-control form-control-chosen"
 						<?=isset($somente_visualizar) ? "disabled" : ""?>>
 						<option value="" <?=!empty($venda->cliente_id) ? "" : "selected"?>>Selecione uma opção</option>
@@ -43,7 +43,7 @@
 				<div class="col-md-9 col-xs-12">
 					<div class="form-group">
 						<label> Descrição </label>
-						<input type="text" name="complemento" id="complemento" class="form-control"
+						<input type="text" name="descricao" id="descricao" class="form-control"
 							value="<?=!empty($venda->descricao) ? $venda->descricao : ""?>"
 							<?=isset($somente_visualizar) ? "readonly" : ""?> />
 					</div>

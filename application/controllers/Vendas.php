@@ -72,9 +72,10 @@ class Vendas extends CI_Controller {
     public function salvar() {
         try {
             $data = carregarDadosPost($this->input->post());
+            $data["produtos"] = $this->input->post('produtos');
             unset($data["venda_id"]);
             $venda_id = $this->input->post("venda_id");
-            $this->vendaModel->salvar_categoria($data, $venda_id);
+            $this->vendaModel->salvar_venda($data, $venda_id);
             $this->session->set_flashdata("mensagemSucesso", "Venda " . ($venda_id ? "Editado" : "Criado") . " Com Sucesso!");
             redirect("/vendas");
         } catch(Exception $e) {
