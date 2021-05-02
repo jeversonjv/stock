@@ -37,13 +37,14 @@ class ProdutoModel extends CI_Model {
         return $this->db->get($this->tbl);
     }
 
-    private function salvar($data) { 
+    public function salvar($data) { 
         $this->db->insert($this->tbl, $data);
         return $this->db->insert_id();
     }
 
-    private function update($produto_id, $data) {
+    public function update($produto_id, $data) {
         $this->db->where("produto_id", $produto_id);
+        $this->db->where("produto.usuario_id", $this->usuario_id);
         return $this->db->update($this->tbl, $data);
     }
 
@@ -51,6 +52,22 @@ class ProdutoModel extends CI_Model {
         $this->db->where("usuario_id", $this->usuario_id);
         $this->db->where("produto_id", $produto_id);
         return $this->db->delete($this->tbl);
+    }
+
+    public function get_produto_by_venda_id($venda_id) {
+        $this->db->select("produto.produto_id");
+        $this->db->select("produto.nome");
+        $this->db->select("COUNT(*) as quantidade");
+        $this->db->select("produto.preco_venda as valor_unitario");
+        $this->db->select("(COUNT(*) * produto.preco_venda) as valor_total");
+
+        $this->db->join("venda_produto", "produto.produto_id = venda_produto.produto_id");
+        $this->db->where("venda_produto.venda_id", $venda_id);
+        $this->db->where("produto.usuario_id", $this->usuario_id);
+
+        $this->db->group_by("venda_produto.produto_id");
+
+        return $this->db->get($this->tbl);
     }
 
     function salvar_produto($data, $produto_id = NULL) {

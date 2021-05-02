@@ -13,7 +13,7 @@ class Vendas extends CI_Controller {
     }
 
     public function index() {
-        $this->data["vendas"] = $this->vendaModel->get_all()->result();
+        $this->data["vendas"] = $this->vendaModel->get_all(TRUE)->result();
 
         $this->template->setTitulo("Vendas");
         $this->template->loadView("template/layout", "Vendas/Listagem", $this->data);
@@ -37,8 +37,10 @@ class Vendas extends CI_Controller {
         if($venda->num_rows() === 0) redirect("/vendas");
 
         $this->data["clientes"] = $this->clienteModel->get_all()->result();
+        $this->data["produtos_venda"] = $this->produtoModel->get_produto_by_venda_id($venda_id)->result();
         $this->data["venda"] = $venda->row();
         $this->data["somente_visualizar"] = true;
+
         $this->template->setTitulo("Vendas - Visualizar");
         $this->template->loadView("template/Layout", "Vendas/Formulario", $this->data);
     }
@@ -50,38 +52,62 @@ class Vendas extends CI_Controller {
 
         $this->data["clientes"] = $this->clienteModel->get_all()->result();
         $this->data["produtos"] = $this->produtoModel->get_all(true)->result();
-
+        $this->data["produtos_venda"] = $this->produtoModel->get_produto_by_venda_id($venda_id)->result();
         $this->data["venda"] = $venda->row();
         $this->data["venda_id"] = $venda_id;
+
         $this->template->setTitulo("Vendas - Editar");
         $this->template->loadView("template/Layout", "Vendas/Formulario", $this->data);
     }
 
-    public function excluir($venda_id) {
-        $res = $this->vendaModel->delete($venda_id);
+    public function excluir($venda_id, $voltar_para_estoque) {
+        // Verificando se a venda é mesmo desse user
+        $venda = $this->vendaModel->get_by_id($venda_id);
+        if($venda->num_rows() === 0) redirect("/vendas");
 
-        if($res) {
-            $this->session->set_flashdata("mensagemSucesso", "Venda excluída Com Sucesso!");
-        } else {
-            $this->session->set_flashdata("mensagemErro", "Ocorreu um erro ao excluir o venda!");
-        }
+        $this->vendaModel->delete_venda_produto($venda_id, NULL, $voltar_para_estoque);
+        $this->vendaModel->delete($venda_id);
+
+        $this->session->set_flashdata("mensagemSucesso", "Venda excluída Com Sucesso!");
 
         redirect("/vendas");
     }
 
+    public function excluir_venda_produto($venda_id, $produto_id, $voltar_para_estoque) {
+        $produtos_venda = $this->vendaModel->get_venda_produto($venda_id, NULL, TRUE);
+        if($produtos_venda->num_rows() <= 1) {
+            die(json_encode([
+                "erro" => true,
+                "mensagem" => "Não é possível excluir todas os produtos de uma venda"
+            ]));    
+        }
+
+        $this->vendaModel->delete_venda_produto($venda_id, $produto_id, $voltar_para_estoque);
+        echo json_encode([
+            "erro" => false,
+            "mensagem" => "Produto da venda excluído com sucesso"
+        ]);
+    }
+
     public function salvar() {
         try {
-            $data = carregarDadosPost($this->input->post());
-            $data["produtos"] = $this->input->post('produtos');
-            unset($data["venda_id"]);
             $venda_id = $this->input->post("venda_id");
-            $this->vendaModel->salvar_venda($data, $venda_id);
-            $this->session->set_flashdata("mensagemSucesso", "Venda " . ($venda_id ? "Editado" : "Criado") . " Com Sucesso!");
-            redirect("/vendas");
+            $venda = carregarDadosPost($this->input->post(), ["venda_id"]);
+            $produtos = $this->input->post("produtos");
+            
+            $venda_id = $this->vendaModel->salvar_venda($venda, $produtos, $venda_id);
+            
+            echo json_encode([
+                "erro" => false,
+                "mensagem" => "Venda salva com sucesso.",
+                "venda_id" => $venda_id
+            ]);
+
         } catch(Exception $e) {
-            $this->session->set_flashdata("venda", (object) $data);
-            $this->session->set_flashdata("mensagemErro", $e->getMessage());
-            redirect($venda_id ? "/vendas/editar/{$venda_id}" : "/vendas/adicionar");
+            echo json_encode([
+                "erro" => true,
+                "mensagem" => $e->getMessage()
+            ]);
         }
     }
 
