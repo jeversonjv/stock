@@ -53,15 +53,18 @@
                 <tbody>
                     <?php foreach($vendas as $venda) { ?> 
                         <tr>
-                            <td>  </td>
+                            <td> <?= $venda->nome_cliente ?> </td>
+                            <td> <?= $venda->qtd_produto_venda ?> </td>
+                            <td> <?= date("d/m/Y H:i:s", strtotime($venda->data_venda)) ?> </td>
+                            <td> R$ <?= number_format($venda->valor_total_venda, 2, ",", ".") ?> </td>
                             <td> 
-                                <a class="btn btn-primary text-white" href="/clientes/visualizar/<?= $venda->venda_id ?>"> <i class="fas fa-eye"></i> </a>
+                                <a class="btn btn-primary text-white" href="/vendas/visualizar/<?= $venda->venda_id ?>"> <i class="fas fa-eye"></i> </a>
                             </td>
                             <td> 
-                                <a class="btn btn-warning text-white" href="/clientes/editar/<?= $venda->venda_id ?>"> <i class="fas fa-edit"></i> </a>
+                                <a class="btn btn-warning text-white" href="/vendas/editar/<?= $venda->venda_id ?>"> <i class="fas fa-edit"></i> </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger text-white btn-deletar" data-cliente_id="<?= $venda->venda_id ?>" > <i class="fas fa-trash"></i></i> </a>
+                                <a class="btn btn-danger text-white btn-deletar" data-venda_id="<?= $venda->venda_id ?>" > <i class="fas fa-trash"></i></i> </a>
                             </td>
                         </tr>
                     <?php } ?>

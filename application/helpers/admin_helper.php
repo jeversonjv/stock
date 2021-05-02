@@ -35,10 +35,10 @@ if(!function_exists("estadosBrasileiros")) {
 }
 
 if(!function_exists("carregarDadosPost")) {
-    function carregarDadosPost($post) {
+    function carregarDadosPost($post, $ignoreFields = []) {
         $arr = [];
         foreach($post as $key => $value) {
-            if(!is_array($value)) $arr[$key] = !$value ? NULL : $value;
+            if(!is_array($value) && !in_array($key, $ignoreFields)) $arr[$key] = !$value ? NULL : $value;
         }
         return $arr;
     }

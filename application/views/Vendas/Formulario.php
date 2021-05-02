@@ -34,9 +34,9 @@
 						<?=isset($somente_visualizar) ? "disabled" : ""?>>
 						<option value="" <?=!empty($venda->cliente_id) ? "" : "selected"?>>Selecione uma opção</option>
 						<?php foreach ($clientes as $cliente) {?>
-						<option value="<?=$cliente->cliente_id?>"
-							<?=!empty($venda->cliente_id) && $cliente->cliente_id == $venda->cliente_id ? "selected" : ""?>>
-							<?=$cliente->nome?> </option>
+							<option value="<?=$cliente->cliente_id?>" <?=!empty($venda->cliente_id) && $cliente->cliente_id == $venda->cliente_id ? "selected" : ""?>>
+								<?=$cliente->nome?> 
+							</option>
 						<?php }?>
 					</select>
 				</div>
@@ -49,13 +49,19 @@
 					</div>
 				</div>
 			</div>
+			
+			
 			<div class="d-flex justify-content-between align-items-center mt-2">
 				<h6 class="align-middle font-weight-bold">Produtos da Venda</h6>
-				<a class="btn btn-primary text-white" id="abrir_modal_add_produto" data-toggle="modal" data-target="#modal_produto"> Adicionar
-					Produto </a>
+				<?php if(!isset($somente_visualizar)) { ?>
+					<a class="btn btn-primary text-white" id="abrir_modal_add_produto" data-toggle="modal" data-target="#modal_produto"> Adicionar Produto </a>
+				<?php } ?>
 			</div>
-
+			
 			<div class="row mt-2">
+				<?php if(!isset($somente_visualizar)) { ?>
+					<input type="hidden" id="produtos" name="produtos" value='<?=!empty($produtos_venda) ? json_encode($produtos_venda) : 0?>' />
+				<?php } ?>
 				<div class="col-md-12 col-xs-12">
 					<table class="table table-bordered table-striped" id="tabela_produtos">
 						<thead>
@@ -64,13 +70,29 @@
                                 <th> Quantidade </th>
                                 <th> Valor Unitário </th>
                                 <th> Valor Total (Qtd x V.U) </th>
-                                <th> Remover </th>
+								<?php if(!isset($somente_visualizar)) { ?> 
+									<th> Remover </th>
+								<?php } ?>
                             </tr>
                         </thead>
                         <tbody>
-							<tr>
-                    			<td class="text-center" colspan="5"> Sem Produtos Cadastrados </td>
-                			</tr>
+							<?php if(!empty($produtos_venda) > 0) { ?> 
+								<?php foreach($produtos_venda as $produto) { ?> 
+									<tr>
+										<td> <?= $produto->nome ?> </td>
+										<td> <?= $produto->quantidade ?> </td>
+										<td> R$ <?= number_format($produto->valor_unitario, 2, ",", ".") ?> </td>
+										<td> R$ <?= number_format($produto->valor_total, 2, ",", ".") ?> </td>
+										<?php if(!isset($somente_visualizar)) { ?> 
+											<td> <a class="btn btn-danger text-white btn-deletar" data-produto_id="<?= $produto->produto_id ?>"> <i class="fas fa-trash icone_deletar"></i></i> </a> </td>
+										<?php } ?>
+									</tr>
+								<?php } ?>
+							<?php } else { ?>
+								<tr>
+									<td class="text-center" colspan="5"> Sem Produtos Cadastrados </td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
@@ -97,9 +119,9 @@
 							<?=isset($somente_visualizar) ? "disabled" : ""?>>
 							<option value="0">Selecione um produto</option>
 							<?php foreach ($produtos as $produto) {?>
-							<option value="<?=$produto->produto_id?>">
-								<?=$produto->nome?>
-							</option>
+								<option value="<?=$produto->produto_id?>">
+									<?=$produto->nome?>
+								</option>
 							<?php }?>
 						</select>
 					</div>
