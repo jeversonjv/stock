@@ -1,7 +1,7 @@
 $(document).ready(() => {
 
     $(".btn-deletar").click((evt) => {
-        let fornecedor_id = $(evt.target).data("fornecedor_id");
+        let fornecedor_id = $(evt.target).data("fornecedor_id") || $(evt.target).parent().data("fornecedor_id");
         Swal.fire({
             title: 'Tem certeza?',
             text: 'Não será possível recuperar o registro',
