@@ -34,6 +34,25 @@ if(!function_exists("estadosBrasileiros")) {
     }
 }
 
+if(!function_exists("getMesesCompleto")) {
+    function getMesesCompleto () {
+        return array(
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+        );
+    }
+}
+
 if(!function_exists("carregarDadosPost")) {
     function carregarDadosPost($post, $ignoreFields = []) {
         $arr = [];

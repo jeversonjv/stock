@@ -272,7 +272,7 @@
     <script src="/assets/template/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/assets/template/js/demo/chart-area-demo.js"></script>
+    <!-- <script src="/assets/template/js/demo/chart-area-demo.js"></script> -->
     <script src="/assets/template/js/demo/chart-pie-demo.js"></script>
 
     <!-- Page level plugins -->

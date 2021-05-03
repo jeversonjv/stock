@@ -19,11 +19,11 @@ class VendaModel extends CI_Model
         $this->load->model("produtoModel", "", true);
     }
 
-    public function get_all($detalhado = FALSE)
+    public function get_all($detalhado = false)
     {
         $this->db->select("venda.*");
-        
-        if($detalhado) {
+
+        if ($detalhado) {
             $this->add_detalhes_venda();
         }
 
@@ -31,11 +31,11 @@ class VendaModel extends CI_Model
         return $this->db->get($this->tbl);
     }
 
-    public function get_by_id($venda_id, $detalhado = FALSE)
+    public function get_by_id($venda_id, $detalhado = false)
     {
         $this->db->select("venda.*");
 
-        if($detalhado) {
+        if ($detalhado) {
             $this->add_detalhes_venda();
         }
 
@@ -44,7 +44,8 @@ class VendaModel extends CI_Model
         return $this->db->get($this->tbl);
     }
 
-    private function add_detalhes_venda() {
+    private function add_detalhes_venda()
+    {
         $this->db->select("IFNULL(cliente.nome, 'Sem cliente vinculado') as nome_cliente");
         $this->db->select("get_valor_total_venda(venda.venda_id) as valor_total_venda");
         $this->db->select("get_qtd_produto_venda(venda.venda_id) as qtd_produto_venda");
@@ -70,15 +71,15 @@ class VendaModel extends CI_Model
         return $this->db->delete($this->tbl);
     }
 
-    public function get_venda_produto($venda_id, $produto_id = NULL, $agrupar_produtos = FALSE) 
+    public function get_venda_produto($venda_id, $produto_id = null, $agrupar_produtos = false)
     {
-        if($agrupar_produtos) {
+        if ($agrupar_produtos) {
             $this->db->select("venda_produto.*");
             $this->db->select("COUNT(*) as qtd");
             $this->db->group_by("produto_id");
         }
 
-        if($produto_id) {
+        if ($produto_id) {
             $this->db->where("produto_id", $produto_id);
         }
 
@@ -96,18 +97,18 @@ class VendaModel extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function delete_venda_produto($venda_id, $produto_id = NULL, $voltar_produto_estoque = FALSE)
+    public function delete_venda_produto($venda_id, $produto_id = null, $voltar_produto_estoque = false)
     {
-        if($voltar_produto_estoque) {
-            $produtos = $this->get_venda_produto($venda_id, $produto_id, TRUE)->result();
-            foreach($produtos as $produto) {
+        if ($voltar_produto_estoque) {
+            $produtos = $this->get_venda_produto($venda_id, $produto_id, true)->result();
+            foreach ($produtos as $produto) {
                 $produtoSalvo = $this->produtoModel->get_by_id($produto->produto_id)->row();
                 $att_produto["estoque"] = $produtoSalvo->estoque + $produto->qtd;
                 $this->produtoModel->update($produto->produto_id, $att_produto);
             }
         }
 
-        if($produto_id) {
+        if ($produto_id) {
             $this->db->where("produto_id", $produto_id);
         }
 
@@ -123,7 +124,7 @@ class VendaModel extends CI_Model
                 throw new Exception("Nenhum produto selecionado");
             }
 
-            $this->db->trans_strict(FALSE);
+            $this->db->trans_strict(false);
             $this->db->trans_begin();
 
             if ($venda_id) {
@@ -137,12 +138,12 @@ class VendaModel extends CI_Model
             $this->salvar_produtos($venda_id, $produtos);
             $produtos_venda = $this->get_venda_produto($venda_id);
 
-            if ($this->db->trans_status() === FALSE) {
+            if ($this->db->trans_status() === false) {
                 throw new Exception("Ocorreu um erro na efetivação da venda, entre em contato com o suporte.");
-            } else if($produtos_venda->num_rows() == 0) {
+            } else if ($produtos_venda->num_rows() == 0) {
                 throw new Exception("Nenhum produto foi salvo na venda, verifique o estoque.");
             }
-            
+
             $this->db->trans_commit();
             return $venda_id;
 
@@ -155,9 +156,10 @@ class VendaModel extends CI_Model
         }
     }
 
-    public function salvar_produtos($venda_id, $produtos) {
+    public function salvar_produtos($venda_id, $produtos)
+    {
         if (isset($produtos) && count($produtos) > 0) {
-            $this->delete_venda_produto($venda_id, NULL, TRUE);
+            $this->delete_venda_produto($venda_id, null, true);
 
             foreach ($produtos as $produto) {
                 $produtoSalvo = $this->produtoModel->get_by_id($produto["produto_id"]);
@@ -187,5 +189,28 @@ class VendaModel extends CI_Model
                 }
             }
         }
+    }
+
+    public function get_faturamento_periodo($data_inicial, $data_final)
+    {
+        $this->db->select("IFNULL(SUM(produto.preco_venda), 0) as total");
+        $this->set_query_comum_indicadores_financeiros($data_inicial, $data_final);
+        return $this->db->get($this->tbl);
+    }
+
+    public function get_lucro_periodo($data_inicial, $data_final)
+    {
+        $this->db->select("IFNULL(SUM(produto.preco_venda) - SUM(produto.preco_custo), 0) as total");
+        $this->set_query_comum_indicadores_financeiros($data_inicial, $data_final);
+        return $this->db->get($this->tbl);
+    }
+
+    private function set_query_comum_indicadores_financeiros($data_inicial, $data_final) {
+        $this->db->join("venda_produto", "venda_produto.venda_id = venda.venda_id");
+        $this->db->join("produto", "venda_produto.produto_id = produto.produto_id");
+
+        $this->db->where("venda.data_venda >=", $data_inicial);
+        $this->db->where("venda.data_venda <=", $data_final);
+        $this->db->where("venda.usuario_id", $this->usuario_id);
     }
 }
