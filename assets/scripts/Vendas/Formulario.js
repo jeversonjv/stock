@@ -92,7 +92,8 @@ $(document).ready(() => {
                 valor_unitario,
                 valor_total,
                 validarEstoque: true,
-                quantidadeValidarEstoque: quantidade
+                quantidadeValidarEstoque: quantidade,
+                removerSomenteFront: true
             };
 
             produtos.push(produto);
@@ -160,7 +161,9 @@ $(document).ready(() => {
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
-                    if (venda_id != 0) {
+                    const produto = produtos.find(p => p.produto_id == produto_id && p.removerSomenteFront !== true);
+
+                    if (venda_id != 0 && produto) {
                         Swal.fire({
                             title: 'Deseja voltar com o produto para o estoque?',
                             text: 'O produto será adicionado ao estoque novamente',
