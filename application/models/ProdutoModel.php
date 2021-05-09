@@ -72,8 +72,14 @@ class ProdutoModel extends CI_Model {
 
     function salvar_produto($data, $produto_id = NULL) {
         $this->form_validation->set_rules("nome", "Nome", "trim|required");
+        $this->form_validation->set_rules("preco_venda", "Preço de Venda", "required");
+        $this->form_validation->set_rules("preco_custo", "Preço de Custo", "required");
+        $this->form_validation->set_rules("estoque", "Estoque", "required");
 
         if($this->form_validation->run()){
+            $data["preco_venda"] = trataDinheiro($data["preco_venda"]);
+            $data["preco_custo"] = trataDinheiro($data["preco_custo"]);
+
             if($produto_id) {
                 $this->update($produto_id, $data);
             } else {

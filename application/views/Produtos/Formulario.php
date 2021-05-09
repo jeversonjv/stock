@@ -66,13 +66,13 @@
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> Preço de Venda* </label>
-                        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="preco_venda" id="preco_venda" class="form-control" value="<?=!empty($produto->preco_venda) ? $produto->preco_venda : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
+                        <input type="text" name="preco_venda" id="preco_venda" class="form-control" value="<?=!empty($produto->preco_venda) ? number_format($produto->preco_venda, 2, ",", ".") : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <label> Preço de Custo* </label>
-                        <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="preco_custo" id="preco_custo" class="form-control" value="<?=!empty($produto->preco_custo) ? $produto->preco_custo : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
+                        <input type="text" name="preco_custo" id="preco_custo" class="form-control" value="<?=!empty($produto->preco_custo) ? number_format($produto->preco_custo, 2, ",", ".") : ""?>" <?=isset($somente_visualizar) ? "readonly" : ""?> />
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
