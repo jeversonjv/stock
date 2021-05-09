@@ -130,7 +130,9 @@ class VendaModel extends CI_Model
             if ($venda_id) {
                 $this->update($venda_id, $data);
             } else {
-                $data["data_venda"] = date("Y-m-d H:i:s");
+                if(empty($data["data_venda"])) {
+                    $data["data_venda"] = date("Y-m-d H:i:s");
+                }
                 $data["usuario_id"] = $this->usuario_id;
                 $venda_id = $this->save($data);
             }

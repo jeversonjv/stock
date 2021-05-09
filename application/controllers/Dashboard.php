@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller {
             $this->data["faturamento_mes_atual"] = $this->vendaModel->get_faturamento_periodo($inicio_mes_atual, $hoje)->row()->total;
             $this->data["faturamento_ano_atual"] = $this->vendaModel->get_faturamento_periodo($inicio_ano_atual, $hoje)->row()->total;
         } else {
-            $this->data["lucro_mes_atual"] = $this->vendaModel->get_lucro_periodo($inicio_ano_atual, $hoje)->row()->total;
+            $this->data["lucro_mes_atual"] = $this->vendaModel->get_lucro_periodo($inicio_mes_atual, $hoje)->row()->total;
             $this->data["lucro_ano_atual"] = $this->vendaModel->get_lucro_periodo($inicio_ano_atual, $hoje)->row()->total;
         }
     }

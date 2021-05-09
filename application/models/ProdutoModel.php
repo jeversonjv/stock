@@ -37,6 +37,12 @@ class ProdutoModel extends CI_Model {
         return $this->db->get($this->tbl);
     }
 
+    public function get_aleatorio() {
+        $this->db->where("usuario_id", $this->usuario_id);
+        $this->db->order_by("RAND()");
+        return $this->db->get($this->tbl);
+    }
+
     public function salvar($data) { 
         $this->db->insert($this->tbl, $data);
         return $this->db->insert_id();
