@@ -122,3 +122,9 @@ if(!function_exists("dd")) {
         die();
     }
 }
+
+if(!function_exists("trataDinheiro")) {
+    function trataDinheiro($dinheiro) {
+        return str_replace([".", ","], ["", "."], $dinheiro);
+    }
+}
