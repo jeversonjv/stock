@@ -18,11 +18,15 @@ class Dashboard extends CI_Controller {
         $this->montaDadosKpi("faturamento");
         $this->montaDadosKpi("lucro");
 
+        $this->template->setTitulo("Dashboard");
+        $this->template->loadView("template/layout", "Dashboard/dashboard", $this->data);
+    }
+
+    public function getDadosGraficoLinhas () {
         $this->montaDadosGraficoLinhas("faturamento");
         $this->montaDadosGraficoLinhas("lucro");
 
-        $this->template->setTitulo("Dashboard");
-        $this->template->loadView("template/layout", "Dashboard/dashboard", $this->data);
+        echo json_encode($this->data);
     }
 
     private function montaDadosKpi($tipo) {
@@ -41,7 +45,7 @@ class Dashboard extends CI_Controller {
 
     private function montaDadosGraficoLinhas($tipo) {
         for($idx = 5; $idx >= 0; $idx--) {
-            $inicio_mes = date("Y-m-d 00:00:00", strtotime("-$idx months"));
+            $inicio_mes = date("Y-m-01 00:00:00", strtotime("-$idx months"));
             $final_mes = date("Y-m-t 23:59:59", strtotime("-$idx months"));
 
             if($tipo == "faturamento") {
@@ -50,8 +54,8 @@ class Dashboard extends CI_Controller {
                 $total = $this->vendaModel->get_lucro_periodo($inicio_mes, $final_mes)->row()->total;
             }
 
-            $this->data[$tipo == "faturamento" ? "graficoFaturamento" : "graficoLucro"]["dados"][] = $total;
-            $this->data[$tipo == "faturamento" ? "graficoFaturamento" : "graficoLucro"]["labels"][] = getMesesCompleto()[ltrim(date("m", strtotime($inicio_mes)), "0") - 1];
+            $this->data[$tipo == "faturamento" ? "graficoFaturamento" : "graficoLucro"]["dados"][] = (float) $total;
+            $this->data[$tipo == "faturamento" ? "graficoFaturamento" : "graficoLucro"]["labels"][] = getMesesAbreviado()[ltrim(date("m", strtotime($inicio_mes)), "0") - 1];
         }
     }
 }

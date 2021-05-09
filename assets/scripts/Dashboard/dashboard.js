@@ -4,17 +4,11 @@ $(document).ready(() => {
     Chart.defaults.global.defaultFontColor = '#858796';
 
     function inicializa() {
-        criarGraficoLinha(document.getElementById("myAreaChart"));
-        criarGraficoLinha(document.getElementById("myAreaChart2"));
-    }
-
-    function criarGraficoLinha(elemento) {
-        new Chart(elemento, {
-            type: 'line',
-            data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        $.get("/Dashboard/getDadosGraficoLinhas", (resposta) => {
+            criarGraficoLinha(document.getElementById("graficoLinhaFaturamento"), {
+                labels: resposta.graficoFaturamento.labels,
                 datasets: [{
-                    label: "Earnings",
+                    label: "Faturamento",
                     lineTension: 0.3,
                     backgroundColor: "rgba(78, 115, 223, 0.05)",
                     borderColor: "rgba(78, 115, 223, 1)",
@@ -26,9 +20,37 @@ $(document).ready(() => {
                     pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                     pointHitRadius: 10,
                     pointBorderWidth: 2,
-                    data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+                    data: resposta.graficoFaturamento.dados,
                 }],
-            },
+            });
+
+            criarGraficoLinha(document.getElementById("graficoLinhaLucro"), {
+                labels: resposta.graficoLucro.labels,
+                datasets: [{
+                    label: "Lucro",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(28, 200, 138, 0.05)",
+                    borderColor: "rgba(28, 200, 138, 1)",
+                    pointRadius: 3,
+                    pointBackgroundColor: "rgba(28, 200, 138, 1)",
+                    pointBorderColor: "rgba(28, 200, 138, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "rgba(28, 200, 138, 1)",
+                    pointHoverBorderColor: "rgba(28, 200, 138, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: resposta.graficoLucro.dados,
+                }],
+            });
+        }, "JSON");
+
+
+    }
+
+    function criarGraficoLinha(elemento, data) {
+        new Chart(elemento, {
+            type: 'line',
+            data,
             options: {
                 maintainAspectRatio: false,
                 layout: {
@@ -58,7 +80,7 @@ $(document).ready(() => {
                             padding: 10,
                             // Include a dollar sign in the ticks
                             callback: function (value, index, values) {
-                                return '$' + number_format(value);
+                                return 'R$ ' + number_format(value);
                             }
                         },
                         gridLines: {
@@ -90,15 +112,13 @@ $(document).ready(() => {
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                            return datasetLabel + ': R$ ' + number_format(tooltipItem.yLabel);
                         }
                     }
                 }
             }
         });
     }
-
-    inicializa();
 
     function number_format(number, decimals, dec_point, thousands_sep) {
         // *     example: number_format(1234.56, 2, ',', ' ');
@@ -126,6 +146,6 @@ $(document).ready(() => {
         return s.join(dec);
     }
 
-
+    inicializa();
 });
 

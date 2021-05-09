@@ -53,6 +53,25 @@ if(!function_exists("getMesesCompleto")) {
     }
 }
 
+if(!function_exists("getMesesAbreviado")) {
+    function getMesesAbreviado () {
+        return array(
+            "Jan",
+            "Fev",
+            "Mar",
+            "Abr",
+            "Maio",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Set",
+            "Out",
+            "Nov",
+            "Dez"
+        );
+    }
+}
+
 if(!function_exists("carregarDadosPost")) {
     function carregarDadosPost($post, $ignoreFields = []) {
         $arr = [];
