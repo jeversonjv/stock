@@ -24,15 +24,21 @@ class ClienteModel extends CI_Model {
         return $this->db->get($this->tbl);
     }
 
-    private function get_by_cpf($cpf) {
+    public function get_by_cpf($cpf) {
         $this->db->where("usuario_id", $this->usuario_id);
         $this->db->where("cpf", $cpf);
         return $this->db->get($this->tbl);
     }
 
-    private function get_by_email($email) {
+    public function get_by_email($email) {
         $this->db->where("usuario_id", $this->usuario_id);
         $this->db->where("email", $email);
+        return $this->db->get($this->tbl);
+    }
+
+    public function get_aleatorio() {
+        $this->db->where("usuario_id", $this->usuario_id);
+        $this->db->order_by("RAND()");
         return $this->db->get($this->tbl);
     }
 
