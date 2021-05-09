@@ -17,7 +17,6 @@ class GeradorDados extends CI_Controller
     public function gerarVendaPeriodo($data_base)
     {
         $qtd_dias = floor((time() - strtotime($data_base)) / (60 * 60 * 24));
-        dd($qtd_dias);
 
         $contador = 0;
         while ($contador <= $qtd_dias) {
