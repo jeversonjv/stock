@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller {
         $this->montaDadosKpi("lucro");
 
         $this->template->setTitulo("Dashboard");
-        $this->template->loadView("template/layout", "Dashboard/dashboard", $this->data);
+        $this->template->loadView("template/layout", "Dashboard/Dashboard", $this->data);
     }
 
     public function getDadosGraficoLinhas () {
