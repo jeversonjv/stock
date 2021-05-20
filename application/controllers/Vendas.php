@@ -19,7 +19,7 @@ class Vendas extends CI_Controller {
         $this->data["vendas"] = $this->vendaModel->get_all(TRUE)->result();
 
         $this->template->setTitulo("Vendas");
-        $this->template->loadView("template/layout", "Vendas/Listagem", $this->data);
+        $this->template->loadView("template/Layout", "Vendas/Listagem", $this->data);
     }
 
     public function adicionar() {

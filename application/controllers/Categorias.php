@@ -16,7 +16,7 @@ class Categorias extends CI_Controller {
     public function index() {
         $this->data["categorias"] = $this->categoriaModel->get_all()->result();
         $this->template->setTitulo("Categorias");
-        $this->template->loadView("template/layout", "Produtos/Categorias/Listagem", $this->data);
+        $this->template->loadView("template/Layout", "Produtos/Categorias/Listagem", $this->data);
     }
 
     public function adicionar() {

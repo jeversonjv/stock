@@ -16,7 +16,7 @@ class Fornecedores extends CI_Controller {
     public function index() {
         $this->data["fornecedores"] = $this->fornecedorModel->get_all()->result();
         $this->template->setTitulo("Fornecedores");
-        $this->template->loadView("template/layout", "Fornecedores/Listagem", $this->data);
+        $this->template->loadView("template/Layout", "Fornecedores/Listagem", $this->data);
     }
 
     public function adicionar() {

@@ -17,7 +17,7 @@ class Clientes extends CI_Controller {
     public function index() {
         $this->data["clientes"] = $this->clienteModel->get_all()->result();
         $this->template->setTitulo("Clientes");
-        $this->template->loadView("template/layout", "Clientes/Listagem", $this->data);
+        $this->template->loadView("template/Layout", "Clientes/Listagem", $this->data);
     }
 
     public function adicionar() {
