@@ -8,12 +8,12 @@ class Login extends CI_Controller {
         $this->load->model("usuarioModel", "", TRUE);
     }
 
-	public function index() {
-        $this->load->view("login");
+    public function index() {
+        $this->load->view("Login");
     }
     
     public function cadastro() {
-        $this->load->view("cadastro");
+        $this->load->view("Cadastro");
     }
 
     public function executar_login() {
