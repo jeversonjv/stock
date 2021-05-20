@@ -18,7 +18,7 @@ class Produtos extends CI_Controller {
     public function index() {
         $this->data["produtos"] = $this->produtoModel->get_all()->result();
         $this->template->setTitulo("Produtos");
-        $this->template->loadView("template/layout", "Produtos/Listagem", $this->data);
+        $this->template->loadView("template/Layout", "Produtos/Listagem", $this->data);
     }
 
     public function adicionar() {
